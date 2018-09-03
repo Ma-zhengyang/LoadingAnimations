@@ -17,23 +17,23 @@ import android.view.animation.AccelerateInterpolator;
  * Created by mzy on 2018/8/26.
  */
 
-public class LoadingView extends View {
+public class BallLoading extends View {
 
-    private final String TAG =LoadingView.class.getSimpleName();
+    private final String TAG = BallLoading.class.getSimpleName();
 
     private Paint mPaint;
-    private int radius = 30;
+    private int ballRadius = 20;
     private int startX = 0;
     private int startY = 0;
     private int endY = 0;
     private int currentY = 0;
 
-    public LoadingView(Context context) {
+    public BallLoading(Context context) {
         super(context);
         Log.d(TAG, "LoadingView: Constructor 1");
     }
 
-    public LoadingView(Context context, @Nullable AttributeSet attrs) {
+    public BallLoading(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         Log.d(TAG, "LoadingView: Constructor 2");
 
@@ -45,12 +45,12 @@ public class LoadingView extends View {
         Log.d(TAG, "desity=" + desity);
     }
 
-    public LoadingView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public BallLoading(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         Log.d(TAG, "LoadingView: Constructor 3");
     }
 
-    public LoadingView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public BallLoading(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         Log.d(TAG, "LoadingView: Constructor 4");
     }
@@ -64,7 +64,7 @@ public class LoadingView extends View {
             endY = getHeight() / 2;
             playAnimation();
         } else {
-//            drawLine(canvas);
+      //      drawLine(canvas);
             drawCircle(canvas);
             drawShader(canvas);
         }
@@ -131,10 +131,10 @@ public class LoadingView extends View {
     private void drawCircle(Canvas canvas) {
         mPaint.setColor(Color.parseColor("#0000FF"));
         if (endY - currentY > 10) {
-            canvas.drawCircle(startX, currentY, radius, mPaint);
+            canvas.drawCircle(startX, currentY, ballRadius, mPaint);
         } else {
-            RectF rectF = new RectF(startX - radius, currentY - radius,
-                    startX + radius, currentY + radius - 5);
+            RectF rectF = new RectF(startX - ballRadius, currentY - ballRadius,
+                    startX + ballRadius, currentY + ballRadius - 5);
             canvas.drawOval(rectF, mPaint);
         }
     }
@@ -148,7 +148,7 @@ public class LoadingView extends View {
             return;
         }
 
-        int cut = (int) (radius * ratio);
+        int cut = (int) (ballRadius * ratio);
 
         mPaint.setColor(Color.parseColor("#8C8C8C"));
         RectF rectF = new RectF(startX - cut, endY + 10, startX + cut, endY + 20);
