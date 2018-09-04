@@ -8,12 +8,23 @@
     android:orientation="vertical"
     tools:context="com.example.mzy.loadinganimations.MainActivity">
 
-    <com.example.mzy.loadinganimations.BallLoading
-        android:layout_width="200dp"
-        android:layout_height="200dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-    <com.example.mzy.loadinganimations.CollisionLoading
-        android:layout_width="200dp"
-        android:layout_height="200dp" />
+        <com.example.mzy.loadinganimations.Bounce
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:background="#FFEFD5" />
+
+        <com.example.mzy.loadinganimations.Collision
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:background="#D1EEEE" />
+
+    </LinearLayout>
 
 </LinearLayout>
