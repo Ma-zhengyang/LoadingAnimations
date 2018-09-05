@@ -104,11 +104,15 @@ public class Collision extends View {
         super.onDraw(canvas);
 
         if (ballCenterY == 0) {
+
+            // 12345
+            // ooooo
+
             ballCenterY = getHeight() / 2;
             ballOffsetX = (getWidth() - (ballCount - 2) * ballRadius * 2) / 2;
 
             mPaint.setShader(new LinearGradient(ballOffsetX, 0, getWidth() - ballOffsetX, 0
-                    , new int[]{Color.parseColor("#FF7F00"), Color.parseColor("#F4A460")}
+                    , new int[]{Color.parseColor("#FFEC8B"), Color.parseColor("#FF7F00")}
                     , null, LinearGradient.TileMode.CLAMP));
 
             initAnimation();
