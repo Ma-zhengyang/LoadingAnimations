@@ -4,33 +4,25 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.Interpolator;
-import android.view.animation.LinearInterpolator;
 
 /**
- * Created by mzy on 2018/9/3.
+ * Created by mazhengyang on 18-9-7.
  */
 
-public class Collision extends View {
-
-    private final String TAG = Collision.class.getSimpleName();
-
-    private Interpolator mAccelerateInterpolator = new AccelerateInterpolator();
-    private Interpolator mDecelerateInterpolator = new DecelerateInterpolator();
+public class Collision3 extends View {
+    private final String TAG = Collision3.class.getSimpleName();
 
     private static final float DEFAULT_BALL_RADIUS = 5.0f;
-    private static final float MAX_MOVE_OFFSET = 50.0f;
+    private static final float MAX_MOVE_OFFSET = 15.0f;
 
     private Paint mPaint;
-    private int ballCount = 5;
+    private int ballCount = 2;
     private float ballRadius = 0;
     private float ballOffsetX = 0;
     private float ballCenterY = 0;
@@ -40,11 +32,11 @@ public class Collision extends View {
 
     private ValueAnimator valueAnimator;
 
-    public Collision(Context context) {
+    public Collision3(Context context) {
         super(context);
     }
 
-    public Collision(Context context, @Nullable AttributeSet attrs) {
+    public Collision3(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initValue(context);
     }
@@ -54,6 +46,7 @@ public class Collision extends View {
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setStrokeWidth(1);
+        mPaint.setColor(Color.parseColor("#EE4000"));
 
         ballRadius = DensityUtil.dip2px(context, DEFAULT_BALL_RADIUS);
         maxMoveXOffset = DensityUtil.dip2px(context, MAX_MOVE_OFFSET);
@@ -64,14 +57,20 @@ public class Collision extends View {
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                compute((float) valueAnimator.getAnimatedValue());
+                float value = (float) valueAnimator.getAnimatedValue();
+
+                Log.d(TAG, "onAnimationUpdate: " + value);
+                leftBallMoveXOffset = -value * maxMoveXOffset;
+                rightBallMoveXOffset = value * maxMoveXOffset;
+
                 invalidate();
             }
         });
 
-        valueAnimator.setInterpolator(new LinearInterpolator());
+        valueAnimator.setInterpolator(new AccelerateInterpolator());
+        valueAnimator.setRepeatMode(ValueAnimator.REVERSE);
         valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        valueAnimator.setDuration(2000);
+        valueAnimator.setDuration(500);
     }
 
     @Override
@@ -105,15 +104,11 @@ public class Collision extends View {
 
         if (ballCenterY == 0) {
 
-            // 12345
-            // ooooo
+            // 12
+            // oo
 
             ballCenterY = getHeight() / 2;
-            ballOffsetX = (getWidth() - (ballCount - 2) * ballRadius * 2) / 2;
-
-            mPaint.setShader(new LinearGradient(ballOffsetX, 0, getWidth() - ballOffsetX, 0
-                    , new int[]{Color.parseColor("#EE4000"), Color.parseColor("#FF7F00")}
-                    , null, LinearGradient.TileMode.CLAMP));
+            ballOffsetX = getWidth() / 2;
 
             initAnimation();
             startAnimation();
@@ -124,44 +119,12 @@ public class Collision extends View {
     }
 
     private void drawBall(Canvas canvas) {
-        for (int i = 1; i < ballCount - 1; i++) {
-            canvas.drawCircle(ballOffsetX + ballRadius * (i * 2 - 1),
-                    ballCenterY, ballRadius, mPaint);
-        }
-
         // the first ball
-        canvas.drawCircle(ballOffsetX - ballRadius - leftBallMoveXOffset,
+        canvas.drawCircle(ballOffsetX + leftBallMoveXOffset,
                 ballCenterY, ballRadius, mPaint);
 
-        // the last ball
-        canvas.drawCircle(ballOffsetX + (ballCount - 2) * ballRadius * 2 + ballRadius + rightBallMoveXOffset,
+        // the second ball
+        canvas.drawCircle(ballOffsetX + rightBallMoveXOffset,
                 ballCenterY, ballRadius, mPaint);
     }
-
-    private void compute(float progress) {
-        if (progress <= 0.25f) {// 0 ~ 25%
-            rightBallMoveXOffset = 0;
-            computeLeft(progress);
-        } else if (progress <= 0.5f) {// 25% ~ 50%
-            rightBallMoveXOffset = 0;
-            computeLeft(0.5f - progress);
-        } else if (progress <= 0.75f) {// 50% ~ 75%
-            leftBallMoveXOffset = 0;
-            computeRight(progress - 0.5f);
-        } else if (progress <= 1.0f) {// 75% ~ 100%
-            leftBallMoveXOffset = 0;
-            computeRight(1.0f - progress);
-        }
-    }
-
-    private void computeLeft(float progress) {
-        rightBallMoveXOffset = 0;
-        leftBallMoveXOffset = progress * maxMoveXOffset;
-    }
-
-    private void computeRight(float progress) {
-        leftBallMoveXOffset = 0;
-        rightBallMoveXOffset = progress * maxMoveXOffset;
-    }
-
 }

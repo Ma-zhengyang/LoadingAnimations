@@ -108,7 +108,7 @@ public class Collision2 extends View {
             Log.d(TAG, "onDraw: ballOffsetX=" + ballOffsetX);
 
             mPaint.setShader(new LinearGradient(ballOffsetX, 0, getWidth() - ballOffsetX, 0
-                    , new int[]{Color.parseColor("#FFEC8B"), Color.parseColor("#FF7F00")}
+                    , new int[]{Color.parseColor("#EE4000"), Color.parseColor("#FF7F00")}
                     , null, LinearGradient.TileMode.CLAMP));
 
             initAnimation();
