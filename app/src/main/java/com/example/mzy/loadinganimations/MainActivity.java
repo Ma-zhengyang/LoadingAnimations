@@ -12,7 +12,9 @@ public class MainActivity extends AppCompatActivity {
     String[] INDICATORS = new String[]{
             "BasketBallIndicator",
             "ZoomIndicator",
-            "CollisionIndicator"
+            "CollisionIndicator",
+            "LineIndicator"
+
     };
 
     @Override

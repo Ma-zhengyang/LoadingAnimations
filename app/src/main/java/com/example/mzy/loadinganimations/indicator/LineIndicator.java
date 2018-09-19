@@ -3,35 +3,36 @@ package com.example.mzy.loadinganimations.indicator;
 import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.RectF;
 
 import com.example.mzy.loadinganimations.Indicator;
 
 import java.util.ArrayList;
 
 /**
- * Created by mazhengyang on 18-9-4.
+ * Created by mzy on 2018/9/19.
  */
 
-public class ZoomIndicator extends Indicator {
+public class LineIndicator extends Indicator {
 
-    private final String TAG = ZoomIndicator.class.getSimpleName();
+    private final String TAG = LineIndicator.class.getSimpleName();
 
-    private int count = 4;
+    private int count = 5;
 
     private float[] mAnimatedValue = new float[]{
-            1.0f, 1.0f, 1.0f, 1.0f
+            1.0f, 1.0f, 1.0f, 1.0f, 1.0f
     };
 
     @Override
     protected ArrayList<ValueAnimator> initAnimation() {
 
-        int[] delay = new int[]{100, 200, 300, 400};
+        int[] delay = new int[]{100, 200, 300, 400, 500};
 
         ArrayList<ValueAnimator> list = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
             final int index = i;
-            ValueAnimator valueAnimator = ValueAnimator.ofFloat(1.0f, 0.3f, 1.0f);
+            ValueAnimator valueAnimator = ValueAnimator.ofFloat(1.0f, 0.5f, 1.0f);
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -52,24 +53,17 @@ public class ZoomIndicator extends Indicator {
     @Override
     protected void draw(Canvas canvas, Paint paint) {
 
-        float radius = getWidth() / 20;
-        float space = 5;
+        float lineWidth = getWidth() / 25;
+        float lineSpace = lineWidth;
+        float padding = (getWidth() - (lineWidth * count + lineSpace * (count - 1))) / 2;
 
-        float x = getWidth() / 2;
-        float y = getHeight() / 2;
-
-        float ball_space = (radius * 2) * count + space * (count - 1);
-
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < count; i++) {
             canvas.save();
-            float translateX = (getWidth() - ball_space) / 2 + radius * ((i + 1) * 2 - 1) + space * i;
-            canvas.translate(translateX, y);
-            canvas.scale(mAnimatedValue[i], mAnimatedValue[i]);
-            canvas.drawCircle(0, 0, radius, paint);
+            RectF rectF = new RectF(padding + i * (lineWidth + lineSpace), getHeight() / 1.5f * mAnimatedValue[i],
+                    padding + i * (lineWidth + lineSpace) + lineWidth, getHeight() / 1.5f);
+            canvas.drawRect(rectF, paint);
             canvas.restore();
         }
-
     }
 
 }
-

@@ -20,7 +20,7 @@ public class CollisionIndicator extends Indicator {
 
     private final String TAG = CollisionIndicator.class.getSimpleName();
 
-    private int ballCount = 4;
+    private int count = 4;
     private float leftBallMoveXOffset = 0;
     private float rightBallMoveXOffset = 0;
     private float maxMoveXOffset = 100;
@@ -69,10 +69,10 @@ public class CollisionIndicator extends Indicator {
 
         float radius = getWidth() / 20;
 
-        float ballOffsetX = (getWidth() - (ballCount - 2) * radius * 2) / 2;
+        float ballOffsetX = (getWidth() - (count - 2) * radius * 2) / 2;
         float ballCenterY = getHeight() / 2;
 
-        for (int i = 1; i < ballCount - 1; i++) {
+        for (int i = 1; i < count - 1; i++) {
             canvas.drawCircle(ballOffsetX + radius * (i * 2 - 1),
                     ballCenterY, radius, paint);
         }
@@ -82,7 +82,7 @@ public class CollisionIndicator extends Indicator {
                 ballCenterY, radius, paint);
 
         // the last ball
-        canvas.drawCircle(ballOffsetX + (ballCount - 2) * radius * 2 + radius + rightBallMoveXOffset,
+        canvas.drawCircle(ballOffsetX + (count - 2) * radius * 2 + radius + rightBallMoveXOffset,
                 ballCenterY, radius, paint);
     }
 
