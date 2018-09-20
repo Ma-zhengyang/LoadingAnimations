@@ -5,9 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.Log;
 import android.view.animation.AccelerateInterpolator;
-
-import com.example.mzy.loadinganimations.Indicator;
 
 import java.util.ArrayList;
 
@@ -15,7 +14,7 @@ import java.util.ArrayList;
  * Created by mzy on 2018/8/26.
  */
 
-public class BasketBallIndicator extends Indicator {
+public class BasketBallIndicator extends IndicatorDrawable {
 
     private final String TAG = BasketBallIndicator.class.getSimpleName();
 

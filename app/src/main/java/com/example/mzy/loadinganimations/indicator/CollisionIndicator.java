@@ -8,19 +8,17 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 
-import com.example.mzy.loadinganimations.Indicator;
-
 import java.util.ArrayList;
 
 /**
  * Created by mzy on 2018/9/3.
  */
 
-public class CollisionIndicator extends Indicator {
+public class CollisionIndicator extends IndicatorDrawable {
 
     private final String TAG = CollisionIndicator.class.getSimpleName();
 
-    private int count = 4;
+    private final int count = 4;
     private float leftBallMoveXOffset = 0;
     private float rightBallMoveXOffset = 0;
     private float maxMoveXOffset = 100;

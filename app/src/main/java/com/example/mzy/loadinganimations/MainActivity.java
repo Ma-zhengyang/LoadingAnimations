@@ -7,15 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.mzy.loadinganimations.indicator.TYPE;
+
 public class MainActivity extends AppCompatActivity {
 
-    String[] INDICATORS = new String[]{
-            "BasketBallIndicator",
-            "ZoomIndicator",
-            "CollisionIndicator",
-            "LineIndicator"
-
-    };
+    private final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,18 +31,18 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onBindViewHolder(IndictorHolder holder, int position) {
-                holder.indicator.setIndicator(INDICATORS[position]);
+                ((LoadingIndicator) holder.indicator).setIndicator(TYPE.values()[position]);
             }
 
             @Override
             public int getItemCount() {
-                return INDICATORS.length;
+                return TYPE.values().length;
             }
         });
     }
 
     class IndictorHolder extends RecyclerView.ViewHolder {
-        public LoadingIndicator indicator;
+        public View indicator;
 
         public IndictorHolder(View itemView) {
             super(itemView);

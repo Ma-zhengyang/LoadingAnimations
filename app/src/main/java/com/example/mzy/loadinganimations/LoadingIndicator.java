@@ -11,6 +11,9 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
+import com.example.mzy.loadinganimations.indicator.IndicatorDrawable;
+import com.example.mzy.loadinganimations.indicator.TYPE;
+
 /**
  * Created by mazhengyang on 18-9-18.
  */
@@ -24,19 +27,19 @@ public class LoadingIndicator extends View {
     private int mMinHeight;
     private int mMaxHeight;
 
-    private Indicator mIndicator;
+    private IndicatorDrawable mIndicator;
 
     public LoadingIndicator(Context context) {
         super(context);
         init(context, null, 0, 0);
     }
 
-    public LoadingIndicator(Context context, @Nullable AttributeSet attrs) {
+    public LoadingIndicator(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs, 0, R.style.LoadingIndicator);
     }
 
-    public LoadingIndicator(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public LoadingIndicator(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs, defStyleAttr, R.style.LoadingIndicator);
     }
@@ -44,39 +47,21 @@ public class LoadingIndicator extends View {
     private void init(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.LoadingIndicator, defStyleAttr, defStyleRes);
-
         mMinWidth = ta.getDimensionPixelSize(R.styleable.LoadingIndicator_minWidth, 60);
         mMaxWidth = ta.getDimensionPixelSize(R.styleable.LoadingIndicator_maxWidth, 60);
         mMinHeight = ta.getDimensionPixelSize(R.styleable.LoadingIndicator_minHeight, 60);
         mMaxHeight = ta.getDimensionPixelSize(R.styleable.LoadingIndicator_maxHeight, 60);
+        ta.recycle();
 
         Log.d(TAG, "init: density=" + context.getResources().getDisplayMetrics().density);
-        Log.d(TAG, "init: mMinWidth=" + mMinWidth);
-        Log.d(TAG, "init: mMaxWidth=" + mMaxWidth);
-        Log.d(TAG, "init: mMinHeight=" + mMinHeight);
-        Log.d(TAG, "init: mMaxHeight=" + mMaxHeight);
-
-        ta.recycle();
+        Log.d(TAG, "init: mMinWidth=" + mMinWidth + ", mMaxWidth=" + mMaxWidth);
+        Log.d(TAG, "init: mMinHeight=" + mMinHeight + ", mMaxHeight=" + mMaxHeight);
     }
 
-    public void setIndicator(String type) {
-        try {
-            StringBuilder sb = new StringBuilder();
-            String pkg = getClass().getPackage().getName();
-            sb.append(pkg).append(".indicator.").append(type);
-            Log.d(TAG, "setIndicator: " + sb.toString());
-            Class<?> indicatorClass = Class.forName(sb.toString());
-            Indicator indicator = (Indicator) indicatorClass.newInstance();
-            mIndicator = indicator;
-            mIndicator.setCallback(this);
-            postInvalidate();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+    public void setIndicator(TYPE type) {
+        IndicatorDrawable indicator = type.newInstance();
+        indicator.setCallback(this);
+        mIndicator = indicator;
     }
 
     @Override

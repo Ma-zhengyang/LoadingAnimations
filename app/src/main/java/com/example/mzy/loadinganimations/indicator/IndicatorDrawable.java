@@ -1,4 +1,4 @@
-package com.example.mzy.loadinganimations;
+package com.example.mzy.loadinganimations.indicator;
 
 import android.animation.ValueAnimator;
 import android.graphics.Canvas;
@@ -11,6 +11,7 @@ import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -18,20 +19,25 @@ import java.util.ArrayList;
  * Created by mazhengyang on 18-9-18.
  */
 
-public abstract class Indicator extends Drawable implements Animatable {
+public abstract class IndicatorDrawable extends Drawable implements Animatable {
 
-    private final String TAG = Indicator.class.getSimpleName();
+    private final String TAG = IndicatorDrawable.class.getSimpleName();
 
     private ArrayList<ValueAnimator> mAnimatorsList;
     private Rect mBounds = new Rect();
     private Paint mPaint = new Paint();
 
-    public Indicator() {
+    public IndicatorDrawable() {
+        Log.d(TAG, "Indicator: ");
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setStrokeWidth(1);
         mPaint.setColor(Color.WHITE);
     }
+
+    protected abstract void draw(Canvas canvas, Paint paint);
+
+    protected abstract ArrayList<ValueAnimator> initAnimation();
 
     @Override
     public int getAlpha() {
@@ -73,14 +79,11 @@ public abstract class Indicator extends Drawable implements Animatable {
         return mBounds.height();
     }
 
+
     @Override
     public void draw(@NonNull Canvas canvas) {
         draw(canvas, mPaint);
     }
-
-    protected abstract void draw(Canvas canvas, Paint paint);
-
-    protected abstract ArrayList<ValueAnimator> initAnimation();
 
     @Override
     public void start() {
@@ -112,4 +115,5 @@ public abstract class Indicator extends Drawable implements Animatable {
             animator.end();
         }
     }
+
 }

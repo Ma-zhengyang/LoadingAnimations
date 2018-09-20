@@ -4,19 +4,17 @@ import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-import com.example.mzy.loadinganimations.Indicator;
-
 import java.util.ArrayList;
 
 /**
  * Created by mazhengyang on 18-9-4.
  */
 
-public class ZoomIndicator extends Indicator {
+public class ZoomIndicator extends IndicatorDrawable {
 
     private final String TAG = ZoomIndicator.class.getSimpleName();
 
-    private int count = 4;
+    private final int count = 4;
 
     private float[] mAnimatedValue = new float[]{
             1.0f, 1.0f, 1.0f, 1.0f

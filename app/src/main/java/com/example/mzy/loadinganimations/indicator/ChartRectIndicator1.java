@@ -5,19 +5,17 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
-import com.example.mzy.loadinganimations.Indicator;
-
 import java.util.ArrayList;
 
 /**
  * Created by mzy on 2018/9/19.
  */
 
-public class LineIndicator extends Indicator {
+public class ChartRectIndicator1 extends IndicatorDrawable {
 
-    private final String TAG = LineIndicator.class.getSimpleName();
+    private final String TAG = ChartRectIndicator1.class.getSimpleName();
 
-    private int count = 5;
+    private final int count = 5;
 
     private float[] mAnimatedValue = new float[]{
             1.0f, 1.0f, 1.0f, 1.0f, 1.0f
@@ -53,14 +51,18 @@ public class LineIndicator extends Indicator {
     @Override
     protected void draw(Canvas canvas, Paint paint) {
 
-        float lineWidth = getWidth() / 25;
-        float lineSpace = lineWidth;
-        float padding = (getWidth() - (lineWidth * count + lineSpace * (count - 1))) / 2;
+        float rectWidth = getWidth() / 25;
+        float rectSpace = rectWidth;
+        float startX = (getWidth() - (rectWidth * count + rectSpace * (count - 1))) / 2;
+        float bottomY = getHeight() / 1.5f;
+        float rectMax = getHeight() / 1.5f;
 
         for (int i = 0; i < count; i++) {
             canvas.save();
-            RectF rectF = new RectF(padding + i * (lineWidth + lineSpace), getHeight() / 1.5f * mAnimatedValue[i],
-                    padding + i * (lineWidth + lineSpace) + lineWidth, getHeight() / 1.5f);
+            RectF rectF = new RectF(startX + i * (rectWidth + rectSpace),
+                    rectMax * mAnimatedValue[i],
+                    startX + i * (rectWidth + rectSpace) + rectWidth,
+                    bottomY);
             canvas.drawRect(rectF, paint);
             canvas.restore();
         }
