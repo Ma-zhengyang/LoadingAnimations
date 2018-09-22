@@ -164,27 +164,30 @@ public class LoadingIndicator extends View {
         super.onDetachedFromWindow();
         stopAnimation();
     }
-
-    @Override
-    protected void onVisibilityChanged(@NonNull View changedView, int visibility) {
-        super.onVisibilityChanged(changedView, visibility);
-        if (visibility == View.VISIBLE) {
-            startAnimation();
-        } else {
-            stopAnimation();
-        }
-    }
+//
+//    @Override
+//    protected void onVisibilityChanged(@NonNull View changedView, int visibility) {
+//        super.onVisibilityChanged(changedView, visibility);
+//        if (visibility == View.VISIBLE) {
+//            startAnimation();
+//        } else {
+//            stopAnimation();
+//        }
+//    }
 
     private void startAnimation() {
         if (getVisibility() != VISIBLE) {
             return;
         }
+        Log.d(TAG, "startAnimation: ");
         mIndicator.start();
         postInvalidate();
     }
 
     private void stopAnimation() {
+        Log.d(TAG, "stopAnimation: ");
         mIndicator.stop();
         postInvalidate();
     }
+
 }

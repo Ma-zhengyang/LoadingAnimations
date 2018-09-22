@@ -20,6 +20,7 @@ public class ChartRectIndicator1 extends IndicatorDrawable {
     private float[] mAnimatedValue = new float[]{
             1.0f, 1.0f, 1.0f, 1.0f, 1.0f
     };
+    private RectF rectF = new RectF();
 
     @Override
     protected ArrayList<ValueAnimator> initAnimation() {
@@ -59,7 +60,8 @@ public class ChartRectIndicator1 extends IndicatorDrawable {
 
         for (int i = 0; i < count; i++) {
             canvas.save();
-            RectF rectF = new RectF(startX + i * (rectWidth + rectSpace),
+            rectF.setEmpty();
+            rectF.set(startX + i * (rectWidth + rectSpace),
                     rectMax * mAnimatedValue[i],
                     startX + i * (rectWidth + rectSpace) + rectWidth,
                     bottomY);
