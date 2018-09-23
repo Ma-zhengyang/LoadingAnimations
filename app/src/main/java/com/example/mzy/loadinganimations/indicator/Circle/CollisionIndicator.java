@@ -1,12 +1,16 @@
-package com.example.mzy.loadinganimations.indicator;
+package com.example.mzy.loadinganimations.indicator.Circle;
 
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
+
+import com.example.mzy.loadinganimations.indicator.IndicatorDrawable;
 
 import java.util.ArrayList;
 
@@ -21,7 +25,7 @@ public class CollisionIndicator extends IndicatorDrawable {
     private final int count = 4;
     private float leftBallMoveXOffset = 0;
     private float rightBallMoveXOffset = 0;
-    private float maxMoveXOffset = 100;
+    private float maxMoveXOffset;
 
     private Interpolator mAccelerateInterpolator = new AccelerateInterpolator();
     private Interpolator mDecelerateInterpolator = new DecelerateInterpolator();
@@ -29,8 +33,16 @@ public class CollisionIndicator extends IndicatorDrawable {
     private static final float DEFAULT_BALL_RADIUS = 5.0f;
     private static final float MAX_MOVE_OFFSET = 50.0f;
 
+    public CollisionIndicator(Context context) {
+        Log.d(TAG, "CollisionIndicator: ");
+        mContext = context;
+        init();
+
+        maxMoveXOffset = dip2px(mContext, 30.0f);
+    }
+
     @Override
-    protected ArrayList<ValueAnimator> initAnimation() {
+    protected ArrayList<ValueAnimator> getAnimation() {
 
         ArrayList<ValueAnimator> list = new ArrayList<>();
 

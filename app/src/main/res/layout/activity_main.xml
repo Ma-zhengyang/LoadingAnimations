@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,14 +8,49 @@
     android:orientation="vertical"
     tools:context="com.example.mzy.loadinganimations.MainActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:scrollbars="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    </android.support.v7.widget.RecyclerView>
+        <com.example.mzy.loadinganimations.LoadingIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:indicatorName="BasketBallIndicator" />
+
+        <com.example.mzy.loadinganimations.LoadingIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:indicatorName="StarIndicator" />
+
+        <com.example.mzy.loadinganimations.LoadingIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:indicatorName="ZoomIndicator" />
+
+        <com.example.mzy.loadinganimations.LoadingIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:indicatorName="CollisionIndicator" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.example.mzy.loadinganimations.LoadingIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:indicatorName="ChartRectIndicator1" />
+
+        <com.example.mzy.loadinganimations.LoadingIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:indicatorName="ChartRectIndicator2" />
+
+    </LinearLayout>
 
 
 </LinearLayout>

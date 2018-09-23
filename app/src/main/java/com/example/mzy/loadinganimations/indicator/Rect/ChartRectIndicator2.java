@@ -1,11 +1,14 @@
-package com.example.mzy.loadinganimations.indicator;
+package com.example.mzy.loadinganimations.indicator.Rect;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
+
+import com.example.mzy.loadinganimations.indicator.IndicatorDrawable;
 
 import java.util.ArrayList;
 
@@ -18,14 +21,23 @@ public class ChartRectIndicator2 extends IndicatorDrawable {
     private final String TAG = ChartRectIndicator2.class.getSimpleName();
 
     private final int count = 5;
+    private  float rectMax;
     private int mCurrAnimatorState = 0;
 
     private float mAnimatedValue;
     private RectF rectF = new RectF();
     boolean repeatRunned = false;
 
+    public ChartRectIndicator2(Context context) {
+        Log.d(TAG, "ChartRectIndicator2: ");
+        mContext = context;
+        init();
+
+        rectMax = dip2px(mContext, 10.0f);
+    }
+
     @Override
-    protected ArrayList<ValueAnimator> initAnimation() {
+    protected ArrayList<ValueAnimator> getAnimation() {
 
         ArrayList<ValueAnimator> list = new ArrayList<>();
 
@@ -81,8 +93,8 @@ public class ChartRectIndicator2 extends IndicatorDrawable {
     }
 
     /**
-     * »á³öÏÖonAnimationRepeatµÄÖ´ĞĞÏÈÓÚmAnimatedValueÉèÖÃ1.0£¬
-     * µ¼ÖÂ×´Ì¬¸Ä±äºóµÄmCurrAnimatorState£¬¶ÔÓ¦µÄmAnimatedValue³õÊ¼Öµ¾ÍÊÇ1.0,¿ªÊ¼»æÖÆ½×¶Î³öÏÖÉÁË¸ÏÖÏó
+     * ä¼šå‡ºç°onAnimationRepeatçš„æ‰§è¡Œå…ˆäºmAnimatedValueè®¾ç½®1.0ï¼Œ
+     * å¯¼è‡´çŠ¶æ€æ”¹å˜åçš„mCurrAnimatorStateï¼Œå¯¹åº”çš„mAnimatedValueåˆå§‹å€¼å°±æ˜¯1.0,å¼€å§‹ç»˜åˆ¶é˜¶æ®µå‡ºç°é—ªçƒç°è±¡
      * <p>
      * 09-21 13:59:30.594  8977  8977 D ChartRectIndicator2: onAnimationUpdate: mAnimatedValue=0.9992871
      * 09-21 13:59:30.594  8977  8977 D ChartRectIndicator2: draw: 0, 0.9992871, 145.3547
@@ -121,16 +133,15 @@ public class ChartRectIndicator2 extends IndicatorDrawable {
         float rectSpace = rectWidth;
         float startX = (getWidth() - (rectWidth * count + rectSpace * (count - 1))) / 2;
         float bottomY = getHeight() / 1.5f;
-        float rectMax = 30;
 
         for (int i = 0; i < count; i++) {
 
             //mCurrAnimatorState [0, count+1]
-            // =0 ²»ÏÔÊ¾µÚ2 3 4 5Ìõ
-            // =1 ²»ÏÔÊ¾µÚ3 4 5Ìõ
-            // =2 ²»ÏÔÊ¾µÚ4 5Ìõ
-            // =3 ²»ÏÔÊ¾µÚ5Ìõ
-            // >= 4 È«ÏÔÊ¾
+            // =0 ä¸æ˜¾ç¤ºç¬¬2 3 4 5æ¡
+            // =1 ä¸æ˜¾ç¤ºç¬¬3 4 5æ¡
+            // =2 ä¸æ˜¾ç¤ºç¬¬4 5æ¡
+            // =3 ä¸æ˜¾ç¤ºç¬¬5æ¡
+            // >= 4 å…¨æ˜¾ç¤º
             if (i > mCurrAnimatorState) {
                 break;
             }
@@ -142,17 +153,17 @@ public class ChartRectIndicator2 extends IndicatorDrawable {
             float range = (0.5f - Math.abs(mAnimatedValue - 0.5f));
             float offsetHeight = range * rectMax;
 
-            int j = i % 3;//3ÌõÒ»ÏÔÊ¾ÖÜÆÚ
+            int j = i % 3;//3æ¡ä¸€æ˜¾ç¤ºå‘¨æœŸ
             rectF.setEmpty();
             if (i == mCurrAnimatorState) {
-                //µ±Ç°£¬´ÓÎŞµ½ÏÔÊ¾
+                //å½“å‰ï¼Œä»æ— åˆ°æ˜¾ç¤º
                 Log.d(TAG, "draw: " + i + ", " + mAnimatedValue + ", " + (bottomY - (j + 1) * rectMax * mAnimatedValue));
                 rectF.set(startX + i * (rectWidth + rectSpace),
                         bottomY - (j + 1) * rectMax * mAnimatedValue,
                         startX + i * (rectWidth + rectSpace) + rectWidth,
                         bottomY);
             } else {
-                //ÆäËû£¬¶¶¶¯Ğ§¹û
+                //å…¶ä»–ï¼ŒæŠ–åŠ¨æ•ˆæœ
                 rectF.set(startX + i * (rectWidth + rectSpace),
                         bottomY - (j + 1) * rectMax - offsetHeight,
                         startX + i * (rectWidth + rectSpace) + rectWidth,

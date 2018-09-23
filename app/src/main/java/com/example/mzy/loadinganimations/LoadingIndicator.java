@@ -7,12 +7,18 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
+import com.example.mzy.loadinganimations.indicator.Circle.BasketBallIndicator;
+import com.example.mzy.loadinganimations.indicator.Circle.CollisionIndicator;
+import com.example.mzy.loadinganimations.indicator.Circle.ZoomIndicator;
 import com.example.mzy.loadinganimations.indicator.IndicatorDrawable;
-import com.example.mzy.loadinganimations.indicator.TYPE;
+import com.example.mzy.loadinganimations.indicator.Rect.ChartRectIndicator1;
+import com.example.mzy.loadinganimations.indicator.Rect.ChartRectIndicator2;
+import com.example.mzy.loadinganimations.indicator.Star.StarIndicator;
 
 /**
  * Created by mazhengyang on 18-9-18.
@@ -26,6 +32,7 @@ public class LoadingIndicator extends View {
     private int mMaxWidth;
     private int mMinHeight;
     private int mMaxHeight;
+    private String indicatorName;
 
     private IndicatorDrawable mIndicator;
 
@@ -51,17 +58,42 @@ public class LoadingIndicator extends View {
         mMaxWidth = ta.getDimensionPixelSize(R.styleable.LoadingIndicator_maxWidth, 60);
         mMinHeight = ta.getDimensionPixelSize(R.styleable.LoadingIndicator_minHeight, 60);
         mMaxHeight = ta.getDimensionPixelSize(R.styleable.LoadingIndicator_maxHeight, 60);
+        indicatorName = ta.getString(R.styleable.LoadingIndicator_indicatorName);
         ta.recycle();
 
         Log.d(TAG, "init: density=" + context.getResources().getDisplayMetrics().density);
         Log.d(TAG, "init: mMinWidth=" + mMinWidth + ", mMaxWidth=" + mMaxWidth);
         Log.d(TAG, "init: mMinHeight=" + mMinHeight + ", mMaxHeight=" + mMaxHeight);
+        Log.d(TAG, "init: indicatorName=" + indicatorName);
+
+        IndicatorDrawable indicatorDrawable = getIndicator(indicatorName, context);
+        if (indicatorDrawable == null) {
+            Log.e(TAG, "init: indicatorDrawable==null");
+            indicatorDrawable = new BasketBallIndicator(context);
+        }
+        indicatorDrawable.setCallback(this);
+        mIndicator = indicatorDrawable;
     }
 
-    public void setIndicator(TYPE type) {
-        IndicatorDrawable indicator = type.newInstance();
-        indicator.setCallback(this);
-        mIndicator = indicator;
+    public IndicatorDrawable getIndicator(String indicatorName, Context context) {
+        if (TextUtils.isEmpty(indicatorName)) {
+            return null;
+        }
+
+        if ("BasketBallIndicator".equals(indicatorName)) {
+            return new BasketBallIndicator(context);
+        } else if ("StarIndicator".equals(indicatorName)) {
+            return new StarIndicator(context);
+        } else if ("ZoomIndicator".equals(indicatorName)) {
+            return new ZoomIndicator(context);
+        } else if ("CollisionIndicator".equals(indicatorName)) {
+            return new CollisionIndicator(context);
+        } else if ("ChartRectIndicator1".equals(indicatorName)) {
+            return new ChartRectIndicator1(context);
+        } else if ("ChartRectIndicator2".equals(indicatorName)) {
+            return new ChartRectIndicator2(context);
+        }
+        return null;
     }
 
     @Override

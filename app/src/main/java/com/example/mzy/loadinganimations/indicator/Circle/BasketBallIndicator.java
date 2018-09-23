@@ -1,12 +1,15 @@
-package com.example.mzy.loadinganimations.indicator;
+package com.example.mzy.loadinganimations.indicator.Circle;
 
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
 import android.view.animation.AccelerateInterpolator;
+
+import com.example.mzy.loadinganimations.indicator.IndicatorDrawable;
 
 import java.util.ArrayList;
 
@@ -20,8 +23,14 @@ public class BasketBallIndicator extends IndicatorDrawable {
 
     private float mAnimatedValue = 0.0f;
 
+    public BasketBallIndicator(Context context) {
+        Log.d(TAG, "BasketBallIndicator: ");
+        mContext = context;
+        init();
+    }
+
     @Override
-    protected ArrayList<ValueAnimator> initAnimation() {
+    protected ArrayList<ValueAnimator> getAnimation() {
 
         /**
          *    |___o
@@ -29,7 +38,6 @@ public class BasketBallIndicator extends IndicatorDrawable {
          *    |
          *    |
          */
-
         ArrayList<ValueAnimator> list = new ArrayList<>();
 
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(0.25f, 0.5f);

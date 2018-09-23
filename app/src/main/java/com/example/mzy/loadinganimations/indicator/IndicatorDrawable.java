@@ -1,6 +1,7 @@
 package com.example.mzy.loadinganimations.indicator;
 
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
@@ -23,12 +24,13 @@ public abstract class IndicatorDrawable extends Drawable implements Animatable {
 
     private final String TAG = IndicatorDrawable.class.getSimpleName();
 
+    protected Context mContext;
     private ArrayList<ValueAnimator> mAnimatorsList;
     private Rect mBounds = new Rect();
     private Paint mPaint = new Paint();
 
-    public IndicatorDrawable() {
-        Log.d(TAG, "Indicator: ");
+    protected void init() {
+        Log.d(TAG, "init: ");
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setStrokeWidth(1);
@@ -37,7 +39,7 @@ public abstract class IndicatorDrawable extends Drawable implements Animatable {
 
     protected abstract void draw(Canvas canvas, Paint paint);
 
-    protected abstract ArrayList<ValueAnimator> initAnimation();
+    protected abstract ArrayList<ValueAnimator> getAnimation();
 
     @Override
     public int getAlpha() {
@@ -88,9 +90,8 @@ public abstract class IndicatorDrawable extends Drawable implements Animatable {
     @Override
     public void start() {
         if (mAnimatorsList == null) {
-            mAnimatorsList = initAnimation();
+            mAnimatorsList = getAnimation();
         }
-
         startAnimation();
     }
 
@@ -106,7 +107,7 @@ public abstract class IndicatorDrawable extends Drawable implements Animatable {
 
     private void startAnimation() {
         for (ValueAnimator animator : mAnimatorsList) {
-            if(!animator.isStarted()){
+            if (!animator.isStarted()) {
                 animator.start();
             }
         }
@@ -114,10 +115,16 @@ public abstract class IndicatorDrawable extends Drawable implements Animatable {
 
     private void stopAnimation() {
         for (ValueAnimator animator : mAnimatorsList) {
-            if(animator.isStarted()){
+            if (animator.isStarted()) {
                 animator.end();
             }
         }
     }
+
+    public static float dip2px(Context context, float dpValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return dpValue * scale + 0.5f;
+    }
+
 
 }

@@ -1,8 +1,12 @@
-package com.example.mzy.loadinganimations.indicator;
+package com.example.mzy.loadinganimations.indicator.Circle;
 
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Log;
+
+import com.example.mzy.loadinganimations.indicator.IndicatorDrawable;
 
 import java.util.ArrayList;
 
@@ -15,13 +19,22 @@ public class ZoomIndicator extends IndicatorDrawable {
     private final String TAG = ZoomIndicator.class.getSimpleName();
 
     private final int count = 4;
+    private float space;//相邻两圆间距
 
     private float[] mAnimatedValue = new float[]{
             1.0f, 1.0f, 1.0f, 1.0f
     };
 
+    public ZoomIndicator(Context context) {
+        Log.d(TAG, "ZoomIndicator: ");
+        mContext = context;
+        init();
+
+        space = dip2px(mContext, 2.0f);
+    }
+
     @Override
-    protected ArrayList<ValueAnimator> initAnimation() {
+    protected ArrayList<ValueAnimator> getAnimation() {
 
         int[] delay = new int[]{100, 200, 300, 400};
 
@@ -51,7 +64,6 @@ public class ZoomIndicator extends IndicatorDrawable {
     protected void draw(Canvas canvas, Paint paint) {
 
         float radius = getWidth() / 20;
-        float space = 5;
 
         float x = getWidth() / 2;
         float y = getHeight() / 2;

@@ -1,9 +1,13 @@
-package com.example.mzy.loadinganimations.indicator;
+package com.example.mzy.loadinganimations.indicator.Rect;
 
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.Log;
+
+import com.example.mzy.loadinganimations.indicator.IndicatorDrawable;
 
 import java.util.ArrayList;
 
@@ -22,8 +26,14 @@ public class ChartRectIndicator1 extends IndicatorDrawable {
     };
     private RectF rectF = new RectF();
 
+    public ChartRectIndicator1(Context context) {
+        Log.d(TAG, "ChartRectIndicator1: ");
+        mContext = context;
+        init();
+    }
+
     @Override
-    protected ArrayList<ValueAnimator> initAnimation() {
+    protected ArrayList<ValueAnimator> getAnimation() {
 
         int[] delay = new int[]{100, 200, 300, 400, 500};
 
