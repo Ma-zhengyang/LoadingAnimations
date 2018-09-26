@@ -31,7 +31,7 @@
         <com.example.mzy.loadinganimations.LoadingIndicator
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:indicatorName="CollisionIndicator" />
+            app:indicatorName="DropIndicator" />
     </LinearLayout>
 
 
@@ -39,6 +39,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
+        <com.example.mzy.loadinganimations.LoadingIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:indicatorName="CollisionIndicator" />
 
         <com.example.mzy.loadinganimations.LoadingIndicator
             android:layout_width="wrap_content"

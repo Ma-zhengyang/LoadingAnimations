@@ -14,6 +14,7 @@ import android.view.View;
 
 import com.example.mzy.loadinganimations.indicator.Circle.BasketBallIndicator;
 import com.example.mzy.loadinganimations.indicator.Circle.CollisionIndicator;
+import com.example.mzy.loadinganimations.indicator.Circle.DropIndicator;
 import com.example.mzy.loadinganimations.indicator.Circle.ZoomIndicator;
 import com.example.mzy.loadinganimations.indicator.IndicatorDrawable;
 import com.example.mzy.loadinganimations.indicator.Rect.ChartRectIndicator1;
@@ -86,6 +87,8 @@ public class LoadingIndicator extends View {
             return new StarIndicator(context);
         } else if ("ZoomIndicator".equals(indicatorName)) {
             return new ZoomIndicator(context);
+        } else if ("DropIndicator".equals(indicatorName)) {
+            return new DropIndicator(context);
         } else if ("CollisionIndicator".equals(indicatorName)) {
             return new CollisionIndicator(context);
         } else if ("ChartRectIndicator1".equals(indicatorName)) {

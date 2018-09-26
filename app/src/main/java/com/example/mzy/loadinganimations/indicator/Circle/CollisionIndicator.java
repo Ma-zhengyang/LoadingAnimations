@@ -77,7 +77,7 @@ public class CollisionIndicator extends IndicatorDrawable {
 
     private void drawBall(Canvas canvas, Paint paint) {
 
-        float radius = getWidth() / 20;
+        float radius = getWidth() / 25;
 
         float ballOffsetX = (getWidth() - (count - 2) * radius * 2) / 2;
         float ballCenterY = getHeight() / 2;
