@@ -1,2 +1,3 @@
 # LoadingAnimations
-加载动画
+
+![Screenshot](screenshots/preview.gif)
