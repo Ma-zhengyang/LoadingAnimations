@@ -8,12 +8,4 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="LoadingIndicator">
-        <item name="minWidth">100dp</item>
-        <item name="maxWidth">100dp</item>
-        <item name="minHeight">100dp</item>
-        <item name="maxHeight">100dp</item>
-        <item name="indicatorName"></item>
-    </style>
-
 </resources>

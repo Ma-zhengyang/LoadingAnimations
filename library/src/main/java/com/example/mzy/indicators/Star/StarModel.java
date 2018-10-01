@@ -1,4 +1,4 @@
-package com.example.mzy.loadinganimations.indicator.Star;
+package com.example.mzy.indicators.Star;
 
 import android.graphics.RectF;
 

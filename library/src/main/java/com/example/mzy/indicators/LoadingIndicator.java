@@ -1,25 +1,22 @@
-package com.example.mzy.loadinganimations;
+package com.example.mzy.indicators;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
-import com.example.mzy.loadinganimations.indicator.Circle.BasketBallIndicator;
-import com.example.mzy.loadinganimations.indicator.Circle.CollisionIndicator;
-import com.example.mzy.loadinganimations.indicator.Circle.DropIndicator;
-import com.example.mzy.loadinganimations.indicator.Circle.ZoomIndicator;
-import com.example.mzy.loadinganimations.indicator.IndicatorDrawable;
-import com.example.mzy.loadinganimations.indicator.Rect.ChartRectIndicator1;
-import com.example.mzy.loadinganimations.indicator.Rect.ChartRectIndicator2;
-import com.example.mzy.loadinganimations.indicator.Star.StarIndicator;
+import com.example.mzy.indicators.Circle.BasketBallIndicator;
+import com.example.mzy.indicators.Circle.CollisionIndicator;
+import com.example.mzy.indicators.Circle.DropIndicator;
+import com.example.mzy.indicators.Circle.ZoomIndicator;
+import com.example.mzy.indicators.Rect.ChartRectIndicator1;
+import com.example.mzy.indicators.Rect.ChartRectIndicator2;
+import com.example.mzy.indicators.Star.StarIndicator;
 
 /**
  * Created by mazhengyang on 18-9-18.
@@ -52,7 +49,7 @@ public class LoadingIndicator extends View {
         init(context, attrs, defStyleAttr, R.style.LoadingIndicator);
     }
 
-    private void init(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    private void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.LoadingIndicator, defStyleAttr, defStyleRes);
         mMinWidth = ta.getDimensionPixelSize(R.styleable.LoadingIndicator_minWidth, 60);
@@ -100,7 +97,7 @@ public class LoadingIndicator extends View {
     }
 
     @Override
-    protected boolean verifyDrawable(@NonNull Drawable who) {
+    protected boolean verifyDrawable(Drawable who) {
         return who == mIndicator || super.verifyDrawable(who);
     }
 

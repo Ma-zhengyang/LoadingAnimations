@@ -1,4 +1,4 @@
-package com.example.mzy.loadinganimations.indicator.Rect;
+package com.example.mzy.indicators.Rect;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
@@ -8,7 +8,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
 
-import com.example.mzy.loadinganimations.indicator.IndicatorDrawable;
+import com.example.mzy.indicators.IndicatorDrawable;
 
 import java.util.ArrayList;
 

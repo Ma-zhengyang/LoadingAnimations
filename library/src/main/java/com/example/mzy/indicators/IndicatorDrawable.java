@@ -1,4 +1,4 @@
-package com.example.mzy.loadinganimations.indicator;
+package com.example.mzy.indicators;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -10,8 +10,6 @@ import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -51,14 +49,13 @@ public abstract class IndicatorDrawable extends Drawable implements Animatable {
 
     }
 
-    @Nullable
     @Override
     public ColorFilter getColorFilter() {
         return super.getColorFilter();
     }
 
     @Override
-    public void setColorFilter(@Nullable ColorFilter colorFilter) {
+    public void setColorFilter(ColorFilter colorFilter) {
 
     }
 
@@ -83,7 +80,7 @@ public abstract class IndicatorDrawable extends Drawable implements Animatable {
 
 
     @Override
-    public void draw(@NonNull Canvas canvas) {
+    public void draw(Canvas canvas) {
         draw(canvas, mPaint);
     }
 

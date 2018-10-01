@@ -1,4 +1,4 @@
-package com.example.mzy.loadinganimations.indicator.Star;
+package com.example.mzy.indicators.Star;
 
 class VertexF {
     public VertexF() {

@@ -13,22 +13,22 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.example.mzy.loadinganimations.LoadingIndicator
+        <com.example.mzy.indicators.LoadingIndicator
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:indicatorName="BasketBallIndicator" />
 
-        <com.example.mzy.loadinganimations.LoadingIndicator
+        <com.example.mzy.indicators.LoadingIndicator
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:indicatorName="StarIndicator" />
 
-        <com.example.mzy.loadinganimations.LoadingIndicator
+        <com.example.mzy.indicators.LoadingIndicator
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:indicatorName="ZoomIndicator" />
 
-        <com.example.mzy.loadinganimations.LoadingIndicator
+        <com.example.mzy.indicators.LoadingIndicator
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:indicatorName="DropIndicator" />
@@ -40,17 +40,17 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.example.mzy.loadinganimations.LoadingIndicator
+        <com.example.mzy.indicators.LoadingIndicator
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:indicatorName="CollisionIndicator" />
 
-        <com.example.mzy.loadinganimations.LoadingIndicator
+        <com.example.mzy.indicators.LoadingIndicator
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:indicatorName="ChartRectIndicator1" />
 
-        <com.example.mzy.loadinganimations.LoadingIndicator
+        <com.example.mzy.indicators.LoadingIndicator
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:indicatorName="ChartRectIndicator2" />

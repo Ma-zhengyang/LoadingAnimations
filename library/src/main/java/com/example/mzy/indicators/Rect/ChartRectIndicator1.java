@@ -1,48 +1,47 @@
-package com.example.mzy.loadinganimations.indicator.Circle;
+package com.example.mzy.indicators.Rect;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.util.Log;
 
-import com.example.mzy.loadinganimations.indicator.IndicatorDrawable;
+import com.example.mzy.indicators.IndicatorDrawable;
 
 import java.util.ArrayList;
 
 /**
- * Created by mazhengyang on 18-9-4.
+ * Created by mzy on 2018/9/19.
  */
 
-public class ZoomIndicator extends IndicatorDrawable {
+public class ChartRectIndicator1 extends IndicatorDrawable {
 
-    private final String TAG = ZoomIndicator.class.getSimpleName();
+    private final String TAG = ChartRectIndicator1.class.getSimpleName();
 
-    private final int count = 4;
-    private float space;//相邻两圆间距
+    private final int count = 5;
 
     private float[] mAnimatedValue = new float[]{
-            1.0f, 1.0f, 1.0f, 1.0f
+            1.0f, 1.0f, 1.0f, 1.0f, 1.0f
     };
+    private RectF rectF = new RectF();
 
-    public ZoomIndicator(Context context) {
-        Log.d(TAG, "ZoomIndicator: ");
+    public ChartRectIndicator1(Context context) {
+        Log.d(TAG, "ChartRectIndicator1: ");
         mContext = context;
         init();
-
-        space = dip2px(mContext, 2.0f);
     }
 
     @Override
     protected ArrayList<ValueAnimator> getAnimation() {
 
-        int[] delay = new int[]{100, 200, 300, 400};
+        int[] delay = new int[]{100, 200, 300, 400, 500};
 
         ArrayList<ValueAnimator> list = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
             final int index = i;
-            ValueAnimator valueAnimator = ValueAnimator.ofFloat(1.0f, 0.3f, 1.0f);
+            ValueAnimator valueAnimator = ValueAnimator.ofFloat(1.0f, 0.5f, 1.0f);
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -63,23 +62,22 @@ public class ZoomIndicator extends IndicatorDrawable {
     @Override
     protected void draw(Canvas canvas, Paint paint) {
 
-        float radius = getWidth() / 20;
+        float rectWidth = getWidth() / 25;
+        float rectSpace = rectWidth;
+        float startX = (getWidth() - (rectWidth * count + rectSpace * (count - 1))) / 2;
+        float bottomY = getHeight() / 1.5f;
+        float rectMax = getHeight() / 1.5f;
 
-        float x = getWidth() / 2;
-        float y = getHeight() / 2;
-
-        float ball_space = (radius * 2) * count + space * (count - 1);
-
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < count; i++) {
             canvas.save();
-            float translateX = (getWidth() - ball_space) / 2 + radius * ((i + 1) * 2 - 1) + space * i;
-            canvas.translate(translateX, y);
-            canvas.scale(mAnimatedValue[i], mAnimatedValue[i]);
-            canvas.drawCircle(0, 0, radius, paint);
+            rectF.setEmpty();
+            rectF.set(startX + i * (rectWidth + rectSpace),
+                    rectMax * mAnimatedValue[i],
+                    startX + i * (rectWidth + rectSpace) + rectWidth,
+                    bottomY);
+            canvas.drawRect(rectF, paint);
             canvas.restore();
         }
-
     }
 
 }
-

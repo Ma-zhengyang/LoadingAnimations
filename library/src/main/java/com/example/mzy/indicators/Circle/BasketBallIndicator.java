@@ -1,4 +1,4 @@
-package com.example.mzy.loadinganimations.indicator.Circle;
+package com.example.mzy.indicators.Circle;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -9,7 +9,7 @@ import android.graphics.RectF;
 import android.util.Log;
 import android.view.animation.AccelerateInterpolator;
 
-import com.example.mzy.loadinganimations.indicator.IndicatorDrawable;
+import com.example.mzy.indicators.IndicatorDrawable;
 
 import java.util.ArrayList;
 

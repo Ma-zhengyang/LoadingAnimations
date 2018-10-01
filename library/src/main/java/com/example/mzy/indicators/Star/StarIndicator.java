@@ -1,4 +1,4 @@
-package com.example.mzy.loadinganimations.indicator.Star;
+package com.example.mzy.indicators.Star;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -10,7 +10,7 @@ import android.graphics.RectF;
 import android.util.Log;
 import android.view.animation.DecelerateInterpolator;
 
-import com.example.mzy.loadinganimations.indicator.IndicatorDrawable;
+import com.example.mzy.indicators.IndicatorDrawable;
 
 import java.util.ArrayList;
 
