@@ -29,8 +29,16 @@ public class DropIndicator extends IndicatorDrawable {
 
     public DropIndicator(Context context) {
         Log.d(TAG, "DropIndicator: " + getWidth());
-        mContext = context;
-        init();
+        init(context);
+    }
+
+    @Override
+    protected void init(Context context) {
+        Log.d(TAG, "init: ");
+        mPaint.setAntiAlias(true);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setStrokeWidth(1);
+        mPaint.setColor(Color.WHITE);
     }
 
     @Override

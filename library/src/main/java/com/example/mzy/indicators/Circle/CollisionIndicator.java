@@ -3,6 +3,7 @@ package com.example.mzy.indicators.Circle;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
 import android.view.animation.AccelerateInterpolator;
@@ -36,10 +37,18 @@ public class CollisionIndicator extends IndicatorDrawable {
 
     public CollisionIndicator(Context context) {
         Log.d(TAG, "CollisionIndicator: ");
-        mContext = context;
-        init();
+        init(context);
+    }
 
-        maxMoveXOffset = dip2px(mContext, 30.0f);
+    @Override
+    protected void init(Context context) {
+        Log.d(TAG, "init: ");
+        mPaint.setAntiAlias(true);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setStrokeWidth(1);
+        mPaint.setColor(Color.WHITE);
+
+        maxMoveXOffset = dip2px(context, 30.0f);
     }
 
     @Override

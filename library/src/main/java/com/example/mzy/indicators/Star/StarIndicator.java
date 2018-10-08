@@ -3,6 +3,7 @@ package com.example.mzy.indicators.Star;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -34,13 +35,21 @@ public class StarIndicator extends IndicatorDrawable {
 
     public StarIndicator(Context context) {
         Log.d(TAG, "StarIndicator: ");
-        mContext = context;
-        init();
+        init(context);
+    }
 
-        starHeight = dip2px(mContext, 20.0f);
+    @Override
+    protected void init(Context context) {
+        Log.d(TAG, "init: ");
+        mPaint.setAntiAlias(true);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setStrokeWidth(1);
+        mPaint.setColor(Color.WHITE);
+
+        starHeight = dip2px(context, 20.0f);
         mStarModel.setDrawingOuterRect(0, 0, starHeight);
 
-        mShadowWidth = dip2px(mContext, 10.0f);
+        mShadowWidth = dip2px(context, 10.0f);
     }
 
     @Override

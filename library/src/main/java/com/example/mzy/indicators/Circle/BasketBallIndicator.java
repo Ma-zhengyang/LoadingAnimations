@@ -25,8 +25,16 @@ public class BasketBallIndicator extends IndicatorDrawable {
 
     public BasketBallIndicator(Context context) {
         Log.d(TAG, "BasketBallIndicator: ");
-        mContext = context;
-        init();
+        init(context);
+    }
+
+    @Override
+    protected void init(Context context) {
+        Log.d(TAG, "init: ");
+        mPaint.setAntiAlias(true);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setStrokeWidth(1);
+        mPaint.setColor(Color.WHITE);
     }
 
     @Override

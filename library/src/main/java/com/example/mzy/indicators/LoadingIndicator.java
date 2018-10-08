@@ -12,6 +12,7 @@ import android.view.View;
 
 import com.example.mzy.indicators.Circle.BasketBallIndicator;
 import com.example.mzy.indicators.Circle.CollisionIndicator;
+import com.example.mzy.indicators.Circle.DoubleArcIndicator;
 import com.example.mzy.indicators.Circle.DropIndicator;
 import com.example.mzy.indicators.Circle.ZoomIndicator;
 import com.example.mzy.indicators.Rect.ChartRectIndicator1;
@@ -92,6 +93,8 @@ public class LoadingIndicator extends View {
             return new ChartRectIndicator1(context);
         } else if ("ChartRectIndicator2".equals(indicatorName)) {
             return new ChartRectIndicator2(context);
+        } else if ("DoubleArcIndicator".equals(indicatorName)) {
+            return new DoubleArcIndicator(context);
         }
         return null;
     }

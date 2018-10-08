@@ -3,6 +3,7 @@ package com.example.mzy.indicators.Rect;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
@@ -28,8 +29,16 @@ public class ChartRectIndicator1 extends IndicatorDrawable {
 
     public ChartRectIndicator1(Context context) {
         Log.d(TAG, "ChartRectIndicator1: ");
-        mContext = context;
-        init();
+        init(context);
+    }
+
+    @Override
+    protected void init(Context context) {
+        Log.d(TAG, "init: ");
+        mPaint.setAntiAlias(true);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setStrokeWidth(1);
+        mPaint.setColor(Color.WHITE);
     }
 
     @Override

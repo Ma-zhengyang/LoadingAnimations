@@ -10,7 +10,6 @@ import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -22,22 +21,16 @@ public abstract class IndicatorDrawable extends Drawable implements Animatable {
 
     private final String TAG = IndicatorDrawable.class.getSimpleName();
 
-    protected Context mContext;
     private ArrayList<ValueAnimator> mAnimatorsList;
     private Rect mBounds = new Rect();
-    private Paint mPaint = new Paint();
+    protected Paint mPaint = new Paint();
 
-    protected void init() {
-        Log.d(TAG, "init: ");
-        mPaint.setAntiAlias(true);
-        mPaint.setStyle(Paint.Style.FILL);
-        mPaint.setStrokeWidth(1);
-        mPaint.setColor(Color.WHITE);
-    }
+    protected abstract void init(Context context);
+
+    protected abstract ArrayList<ValueAnimator> getAnimation();
 
     protected abstract void draw(Canvas canvas, Paint paint);
 
-    protected abstract ArrayList<ValueAnimator> getAnimation();
 
     @Override
     public int getAlpha() {
