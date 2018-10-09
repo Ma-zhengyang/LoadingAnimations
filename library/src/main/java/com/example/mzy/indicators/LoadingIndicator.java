@@ -10,11 +10,12 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
+import com.example.mzy.indicators.Circle.BallScaleIndicator;
 import com.example.mzy.indicators.Circle.BasketBallIndicator;
 import com.example.mzy.indicators.Circle.CollisionIndicator;
 import com.example.mzy.indicators.Circle.DoubleArcIndicator;
+import com.example.mzy.indicators.Circle.DoubleArcScaleRotateIndicator;
 import com.example.mzy.indicators.Circle.DropIndicator;
-import com.example.mzy.indicators.Circle.ZoomIndicator;
 import com.example.mzy.indicators.Rect.ChartRectIndicator1;
 import com.example.mzy.indicators.Rect.ChartRectIndicator2;
 import com.example.mzy.indicators.Star.StarIndicator;
@@ -83,8 +84,8 @@ public class LoadingIndicator extends View {
             return new BasketBallIndicator(context);
         } else if ("StarIndicator".equals(indicatorName)) {
             return new StarIndicator(context);
-        } else if ("ZoomIndicator".equals(indicatorName)) {
-            return new ZoomIndicator(context);
+        } else if ("BallScaleIndicator".equals(indicatorName)) {
+            return new BallScaleIndicator(context);
         } else if ("DropIndicator".equals(indicatorName)) {
             return new DropIndicator(context);
         } else if ("CollisionIndicator".equals(indicatorName)) {
@@ -95,6 +96,8 @@ public class LoadingIndicator extends View {
             return new ChartRectIndicator2(context);
         } else if ("DoubleArcIndicator".equals(indicatorName)) {
             return new DoubleArcIndicator(context);
+        } else if ("DoubleArcScaleRotateIndicator".equals(indicatorName)) {
+            return new DoubleArcScaleRotateIndicator(context);
         }
         return null;
     }

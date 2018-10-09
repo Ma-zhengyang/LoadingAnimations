@@ -24,8 +24,8 @@ public class DoubleArcIndicator extends IndicatorDrawable {
     private static final int IN_ANGLE = 90;
     private static final int OUT_ANGLE = 270;
 
-    private float inRound;
-    private float outRound;
+    private float inRadius;
+    private float outRadius;
 
     private RectF inRectF, outRectF;
 
@@ -47,8 +47,8 @@ public class DoubleArcIndicator extends IndicatorDrawable {
         mPaint.setStrokeJoin(Paint.Join.ROUND);
         mPaint.setDither(true);
 
-        inRound = dip2px(context, 5.0f);
-        outRound = dip2px(context, 10.0f);
+        inRadius = dip2px(context, 5.0f);
+        outRadius = dip2px(context, 10.0f);
     }
 
     @Override
@@ -79,14 +79,14 @@ public class DoubleArcIndicator extends IndicatorDrawable {
         if (inRectF == null || outRectF == null) {
             inRectF = new RectF();
             outRectF = new RectF();
-            inRectF.set(getWidth() / 2 - inRound,
-                    getHeight() / 2 - inRound,
-                    getWidth() / 2 + inRound,
-                    getHeight() / 2 + inRound);
-            outRectF.set(getWidth() / 2 - outRound,
-                    getHeight() / 2 - outRound,
-                    getWidth() / 2 + outRound,
-                    getHeight() / 2 + outRound);
+            inRectF.set(getWidth() / 2 - inRadius,
+                    getHeight() / 2 - inRadius,
+                    getWidth() / 2 + inRadius,
+                    getHeight() / 2 + inRadius);
+            outRectF.set(getWidth() / 2 - outRadius,
+                    getHeight() / 2 - outRadius,
+                    getWidth() / 2 + outRadius,
+                    getHeight() / 2 + outRadius);
         }
 
         int rotateAngle = (int) (360 * mAnimatedValue);

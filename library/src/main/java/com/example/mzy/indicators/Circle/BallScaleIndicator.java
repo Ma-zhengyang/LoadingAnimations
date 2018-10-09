@@ -15,9 +15,9 @@ import java.util.ArrayList;
  * Created by mazhengyang on 18-9-4.
  */
 
-public class ZoomIndicator extends IndicatorDrawable {
+public class BallScaleIndicator extends IndicatorDrawable {
 
-    private final String TAG = ZoomIndicator.class.getSimpleName();
+    private final String TAG = BallScaleIndicator.class.getSimpleName();
 
     private final int count = 4;
     private float space;//相邻两圆间距
@@ -26,8 +26,8 @@ public class ZoomIndicator extends IndicatorDrawable {
             1.0f, 1.0f, 1.0f, 1.0f
     };
 
-    public ZoomIndicator(Context context) {
-        Log.d(TAG, "ZoomIndicator: ");
+    public BallScaleIndicator(Context context) {
+        Log.d(TAG, "BallScaleIndicator: ");
         init(context);
     }
 
