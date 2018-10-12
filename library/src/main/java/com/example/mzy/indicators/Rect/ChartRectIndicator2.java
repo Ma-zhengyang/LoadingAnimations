@@ -21,7 +21,7 @@ public class ChartRectIndicator2 extends IndicatorDrawable {
 
     private final String TAG = ChartRectIndicator2.class.getSimpleName();
 
-    private final int count = 5;
+    private final int mCount = 5;
     private  float rectMax;
     private int mCurrAnimatorState = 0;
 
@@ -86,7 +86,7 @@ public class ChartRectIndicator2 extends IndicatorDrawable {
 //                mAnimatedValue = 0;
 //                mCurrAnimatorState++;
 //                Log.d(TAG, "onAnimationRepeat: mCurrAnimatorState=" + mCurrAnimatorState);
-//                if (mCurrAnimatorState > count + 1) {
+//                if (mCurrAnimatorState > mCount + 1) {
 //                    Log.d(TAG, "onAnimationRepeat: set mCurrAnimatorState to 0");
 //                    mCurrAnimatorState = 0;
 //                }
@@ -125,7 +125,7 @@ public class ChartRectIndicator2 extends IndicatorDrawable {
 
                 mCurrAnimatorState++;
                 Log.d(TAG, "onAnimationRepeat: mCurrAnimatorState=" + mCurrAnimatorState);
-                if (mCurrAnimatorState > count + 1) {
+                if (mCurrAnimatorState > mCount + 1) {
                     Log.d(TAG, "onAnimationRepeat: set mCurrAnimatorState to 0");
                     mCurrAnimatorState = 0;
                 }
@@ -140,12 +140,12 @@ public class ChartRectIndicator2 extends IndicatorDrawable {
 
         float rectWidth = getWidth() / 25;
         float rectSpace = rectWidth;
-        float startX = (getWidth() - (rectWidth * count + rectSpace * (count - 1))) / 2;
+        float startX = (getWidth() - (rectWidth * mCount + rectSpace * (mCount - 1))) / 2;
         float bottomY = getHeight() / 1.5f;
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < mCount; i++) {
 
-            //mCurrAnimatorState [0, count+1]
+            //mCurrAnimatorState [0, mCount+1]
             // =0 不显示第2 3 4 5条
             // =1 不显示第3 4 5条
             // =2 不显示第4 5条

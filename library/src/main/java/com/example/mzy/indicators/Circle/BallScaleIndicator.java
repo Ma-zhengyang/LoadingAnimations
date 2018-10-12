@@ -19,8 +19,10 @@ public class BallScaleIndicator extends IndicatorDrawable {
 
     private final String TAG = BallScaleIndicator.class.getSimpleName();
 
-    private final int count = 4;
+    private final int mCount = 4;
     private float space;//相邻两圆间距
+    private float radius;//圆的半径
+    private float leftPadding;
 
     private float[] mAnimatedValue = new float[]{
             1.0f, 1.0f, 1.0f, 1.0f
@@ -49,7 +51,7 @@ public class BallScaleIndicator extends IndicatorDrawable {
 
         ArrayList<ValueAnimator> list = new ArrayList<>();
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < mCount; i++) {
             final int index = i;
             ValueAnimator valueAnimator = ValueAnimator.ofFloat(1.0f, 0.3f, 1.0f);
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -72,17 +74,15 @@ public class BallScaleIndicator extends IndicatorDrawable {
     @Override
     protected void draw(Canvas canvas, Paint paint) {
 
-        float radius = getWidth() / 20;
+        if (leftPadding == 0) {
+            radius = getWidth() / 20;
+            leftPadding = (getWidth() - (radius * 2) * mCount + space * (mCount - 1)) / 2;
+        }
 
-        float x = getWidth() / 2;
-        float y = getHeight() / 2;
-
-        float ball_space = (radius * 2) * count + space * (count - 1);
-
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < mCount; i++) {
             canvas.save();
-            float translateX = (getWidth() - ball_space) / 2 + radius * ((i + 1) * 2 - 1) + space * i;
-            canvas.translate(translateX, y);
+            float translateX = leftPadding + radius * ((i + 1) * 2 - 1) + space * i;
+            canvas.translate(translateX, getHeight() / 2);
             canvas.scale(mAnimatedValue[i], mAnimatedValue[i]);
             canvas.drawCircle(0, 0, radius, paint);
             canvas.restore();

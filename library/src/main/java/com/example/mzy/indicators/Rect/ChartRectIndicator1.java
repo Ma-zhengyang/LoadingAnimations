@@ -20,7 +20,7 @@ public class ChartRectIndicator1 extends IndicatorDrawable {
 
     private final String TAG = ChartRectIndicator1.class.getSimpleName();
 
-    private final int count = 5;
+    private final int mCount = 5;
 
     private float[] mAnimatedValue = new float[]{
             1.0f, 1.0f, 1.0f, 1.0f, 1.0f
@@ -48,7 +48,7 @@ public class ChartRectIndicator1 extends IndicatorDrawable {
 
         ArrayList<ValueAnimator> list = new ArrayList<>();
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < mCount; i++) {
             final int index = i;
             ValueAnimator valueAnimator = ValueAnimator.ofFloat(1.0f, 0.5f, 1.0f);
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -73,11 +73,11 @@ public class ChartRectIndicator1 extends IndicatorDrawable {
 
         float rectWidth = getWidth() / 25;
         float rectSpace = rectWidth;
-        float startX = (getWidth() - (rectWidth * count + rectSpace * (count - 1))) / 2;
+        float startX = (getWidth() - (rectWidth * mCount + rectSpace * (mCount - 1))) / 2;
         float bottomY = getHeight() / 1.5f;
         float rectMax = getHeight() / 1.5f;
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < mCount; i++) {
             canvas.save();
             rectF.setEmpty();
             rectF.set(startX + i * (rectWidth + rectSpace),

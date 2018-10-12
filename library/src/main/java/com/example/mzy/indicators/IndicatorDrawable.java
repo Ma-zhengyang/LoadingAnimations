@@ -10,6 +10,7 @@ import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -82,12 +83,20 @@ public abstract class IndicatorDrawable extends Drawable implements Animatable {
         if (mAnimatorsList == null) {
             mAnimatorsList = getAnimation();
         }
-        startAnimation();
+        if (mAnimatorsList != null) {
+            startAnimation();
+        } else {
+            Log.d(TAG, "start: mAnimatorsList is null.");
+        }
     }
 
     @Override
     public void stop() {
-        stopAnimation();
+        if (mAnimatorsList != null) {
+            stopAnimation();
+        } else {
+            Log.d(TAG, "stop: mAnimatorsList is null.");
+        }
     }
 
     @Override

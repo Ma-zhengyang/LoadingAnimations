@@ -10,14 +10,15 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
+import com.example.mzy.indicators.Circle.ArcRotateIndicator;
 import com.example.mzy.indicators.Circle.BallScaleIndicator;
 import com.example.mzy.indicators.Circle.BasketBallIndicator;
 import com.example.mzy.indicators.Circle.CollisionIndicator;
-import com.example.mzy.indicators.Circle.DoubleArcIndicator;
-import com.example.mzy.indicators.Circle.DoubleArcScaleRotateIndicator;
+import com.example.mzy.indicators.Circle.ArcScaleRotateIndicator;
 import com.example.mzy.indicators.Circle.DropIndicator;
 import com.example.mzy.indicators.Rect.ChartRectIndicator1;
 import com.example.mzy.indicators.Rect.ChartRectIndicator2;
+import com.example.mzy.indicators.Rect.ParallelogramIndicator;
 import com.example.mzy.indicators.Star.StarIndicator;
 
 /**
@@ -94,10 +95,12 @@ public class LoadingIndicator extends View {
             return new ChartRectIndicator1(context);
         } else if ("ChartRectIndicator2".equals(indicatorName)) {
             return new ChartRectIndicator2(context);
-        } else if ("DoubleArcIndicator".equals(indicatorName)) {
-            return new DoubleArcIndicator(context);
-        } else if ("DoubleArcScaleRotateIndicator".equals(indicatorName)) {
-            return new DoubleArcScaleRotateIndicator(context);
+        } else if ("ArcRotateIndicator".equals(indicatorName)) {
+            return new ArcRotateIndicator(context);
+        } else if ("ArcScaleRotateIndicator".equals(indicatorName)) {
+            return new ArcScaleRotateIndicator(context);
+        } else if ("ParallelogramIndicator".equals(indicatorName)) {
+            return new ParallelogramIndicator(context);
         }
         return null;
     }
