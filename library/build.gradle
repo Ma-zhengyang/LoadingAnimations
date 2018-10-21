@@ -1,22 +1,30 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
 
     defaultConfig {
-        minSdkVersion 24
-        targetSdkVersion 26
+        minSdkVersion 15
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
     }
 
-    buildToolsVersion '26.0.2'
-
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
-    androidTestCompile('com.android.support:support-annotations:26.1.0') {
-        force = true
-    }
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+publish {
+    userOrg = 'mazhengyang'
+    groupId = 'com.example.mzy.indicators'
+    artifactId = 'LoadingAnimations'
+    publishVersion = '1.0.0'
+    desc = 'a nice view of loading animation'
+    website = 'https://github.com/Ma-zhengyang/LoadingAnimations'
 }
