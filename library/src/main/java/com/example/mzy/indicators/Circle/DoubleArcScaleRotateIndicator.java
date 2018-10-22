@@ -112,8 +112,14 @@ public class DoubleArcScaleRotateIndicator extends IndicatorDrawable {
          *          90
          */
 //        paint.setColor(Color.WHITE);
-        canvas.drawArc(mRectF, 225, 90, false, paint);
-        canvas.drawArc(mRectF, 45, 90, false, paint);
+        if (mScaleValue < 0.1f) {
+            paint.setStyle(Paint.Style.FILL);
+            canvas.drawCircle(0, 0, radius, paint);
+        } else {
+            paint.setStyle(Paint.Style.STROKE);
+            canvas.drawArc(mRectF, 225, 90, false, paint);
+            canvas.drawArc(mRectF, 45, 90, false, paint);
+        }
 
         canvas.restore();
 
