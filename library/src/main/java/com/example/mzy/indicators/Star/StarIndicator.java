@@ -1,5 +1,6 @@
 package com.example.mzy.indicators.Star;
 
+import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -53,9 +54,9 @@ public class StarIndicator extends IndicatorDrawable {
     }
 
     @Override
-    protected ArrayList<ValueAnimator> getAnimation() {
+    protected ArrayList<Animator> getAnimation() {
 
-        ArrayList<ValueAnimator> list = new ArrayList<>();
+        ArrayList<Animator> list = new ArrayList<>();
 
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

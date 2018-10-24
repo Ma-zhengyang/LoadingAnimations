@@ -11,7 +11,7 @@
 Add dependencies in build.gradle.
 
 ```gradle
-    compile 'com.example.mzy.indicators:LoadingAnimations:1.0.0'
+    compile 'com.example.mzy.indicators:LoadingAnimations:1.0.1'
 ```
 
 
@@ -35,17 +35,21 @@ As seen above in the **Demo**, the indicators are as follows:
 **Row 1**
  * `BasketBallIndicator`
  * `StarIndicator`
- * `BallScaleIndicator`
- * `DropIndicator`
+ * `CircleScaleIndicator`
+ * `CircleWaveIndicator`
 
 **Row 2**
- * `CollisionIndicator`
+ * `JumpIndicator`
+ * `CircleCollisionIndicator`
+ * `DropIndicator`
+ * `TrackIndicator`
+
+**Row 3**
  * `ChartRectIndicator1`
  * `ChartRectIndicator2`
  * `ParallelogramIndicator`
+ * `ArcRotateIndicator`
 
-**Row 3**
- * `DoubleArcIndicator`
- * `DoubleArcScaleRotateIndicator`
-
+ **Row 4**
+  * `ArcRotateScaleIndicator`
 

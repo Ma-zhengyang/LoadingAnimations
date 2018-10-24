@@ -1,5 +1,6 @@
 package com.example.mzy.indicators.Rect;
 
+import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -53,10 +54,10 @@ public class ParallelogramIndicator extends IndicatorDrawable {
     }
 
     @Override
-    protected ArrayList<ValueAnimator> getAnimation() {
+    protected ArrayList<Animator> getAnimation() {
         int[] delay = new int[]{100, 200, 300};
 
-        ArrayList<ValueAnimator> list = new ArrayList<>();
+        ArrayList<Animator> list = new ArrayList<>();
 
         for (int i = 0; i < mCount; i++) {
             final int index = i;

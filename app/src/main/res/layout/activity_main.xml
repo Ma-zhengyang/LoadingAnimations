@@ -26,12 +26,13 @@
         <com.example.mzy.indicators.LoadingIndicator
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:indicatorName="BallScaleIndicator" />
+            app:indicatorName="CircleScaleIndicator" />
 
         <com.example.mzy.indicators.LoadingIndicator
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:indicatorName="DropIndicator" />
+            app:indicatorName="CircleWaveIndicator" />
+
     </LinearLayout>
 
 
@@ -43,7 +44,29 @@
         <com.example.mzy.indicators.LoadingIndicator
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:indicatorName="CollisionIndicator" />
+            app:indicatorName="JumpIndicator" />
+
+        <com.example.mzy.indicators.LoadingIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:indicatorName="CircleCollisionIndicator" />
+
+        <com.example.mzy.indicators.LoadingIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:indicatorName="DropIndicator" />
+
+        <com.example.mzy.indicators.LoadingIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:indicatorName="TrackIndicator" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <com.example.mzy.indicators.LoadingIndicator
             android:layout_width="wrap_content"
@@ -60,6 +83,11 @@
             android:layout_height="wrap_content"
             app:indicatorName="ParallelogramIndicator" />
 
+        <com.example.mzy.indicators.LoadingIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:indicatorName="ArcRotateIndicator" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -70,12 +98,7 @@
         <com.example.mzy.indicators.LoadingIndicator
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:indicatorName="DoubleArcIndicator" />
-
-        <com.example.mzy.indicators.LoadingIndicator
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:indicatorName="DoubleArcScaleRotateIndicator" />
+            app:indicatorName="ArcRotateScaleIndicator" />
 
     </LinearLayout>
 

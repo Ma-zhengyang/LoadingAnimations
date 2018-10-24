@@ -1,5 +1,6 @@
 package com.example.mzy.indicators.Circle;
 
+import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -20,9 +21,9 @@ import java.util.ArrayList;
  * Created by mzy on 2018/9/3.
  */
 
-public class CollisionIndicator extends IndicatorDrawable {
+public class CircleCollisionIndicator extends IndicatorDrawable {
 
-    private final String TAG = CollisionIndicator.class.getSimpleName();
+    private final String TAG = CircleCollisionIndicator.class.getSimpleName();
 
     private final int mCount = 4;
     private float leftBallMoveXOffset = 0;
@@ -35,8 +36,8 @@ public class CollisionIndicator extends IndicatorDrawable {
     private static final float DEFAULT_BALL_RADIUS = 5.0f;
     private static final float MAX_MOVE_OFFSET = 50.0f;
 
-    public CollisionIndicator(Context context) {
-        Log.d(TAG, "CollisionIndicator: ");
+    public CircleCollisionIndicator(Context context) {
+        Log.d(TAG, "CircleCollisionIndicator: ");
         init(context);
     }
 
@@ -52,9 +53,9 @@ public class CollisionIndicator extends IndicatorDrawable {
     }
 
     @Override
-    protected ArrayList<ValueAnimator> getAnimation() {
+    protected ArrayList<Animator> getAnimation() {
 
-        ArrayList<ValueAnimator> list = new ArrayList<>();
+        ArrayList<Animator> list = new ArrayList<>();
 
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

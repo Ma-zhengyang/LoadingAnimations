@@ -1,4 +1,4 @@
-package com.example.mzy.indicators.Rect;
+package com.example.mzy.indicators.Circle;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
@@ -6,7 +6,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.RectF;
 import android.util.Log;
 
 import com.example.mzy.indicators.IndicatorDrawable;
@@ -14,22 +13,24 @@ import com.example.mzy.indicators.IndicatorDrawable;
 import java.util.ArrayList;
 
 /**
- * Created by mzy on 2018/9/19.
+ * Created by mazhengyang on 18-10-24.
  */
 
-public class ChartRectIndicator1 extends IndicatorDrawable {
+public class CircleWaveIndicator extends IndicatorDrawable {
 
-    private final String TAG = ChartRectIndicator1.class.getSimpleName();
+    private final String TAG = CircleWaveIndicator.class.getSimpleName();
 
-    private final int mCount = 5;
+    private final int mCount = 3;
+    private float space;//相邻两圆间距
+    private float radius;//圆的半径
+    private float leftPadding;
 
     private float[] mAnimatedValue = new float[]{
-            1.0f, 1.0f, 1.0f, 1.0f, 1.0f
+            0.0f, 0.0f, 0.0f
     };
-    private RectF rectF = new RectF();
 
-    public ChartRectIndicator1(Context context) {
-        Log.d(TAG, "ChartRectIndicator1: ");
+    public CircleWaveIndicator(Context context) {
+        Log.d(TAG, "CircleWaveIndicator: ");
         init(context);
     }
 
@@ -40,18 +41,19 @@ public class ChartRectIndicator1 extends IndicatorDrawable {
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setStrokeWidth(1);
         mPaint.setColor(Color.WHITE);
+
+        space = dip2px(context, 2.0f);
     }
 
     @Override
     protected ArrayList<Animator> getAnimation() {
-
-        int[] delay = new int[]{100, 200, 300, 400, 500};
+        int[] delay = new int[]{100, 200, 300};
 
         ArrayList<Animator> list = new ArrayList<>();
 
         for (int i = 0; i < mCount; i++) {
             final int index = i;
-            ValueAnimator valueAnimator = ValueAnimator.ofFloat(1.0f, 0.5f, 1.0f);
+            ValueAnimator valueAnimator = ValueAnimator.ofFloat(0.0f, 1.0f, 0.0f);
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -71,23 +73,15 @@ public class ChartRectIndicator1 extends IndicatorDrawable {
 
     @Override
     protected void draw(Canvas canvas, Paint paint) {
-
-        float rectWidth = getWidth() / 25;
-        float rectSpace = rectWidth;
-        float startX = (getWidth() - (rectWidth * mCount + rectSpace * (mCount - 1))) / 2;
-        float bottomY = getHeight() / 1.5f;
-        float rectMax = getHeight() / 1.5f;
+        if (leftPadding == 0) {
+            radius = getWidth() / 25;
+            leftPadding = (getWidth() - (radius * 2) * mCount + space * (mCount - 1)) / 2;
+        }
 
         for (int i = 0; i < mCount; i++) {
-            canvas.save();
-            rectF.setEmpty();
-            rectF.set(startX + i * (rectWidth + rectSpace),
-                    rectMax * mAnimatedValue[i],
-                    startX + i * (rectWidth + rectSpace) + rectWidth,
-                    bottomY);
-            canvas.drawRect(rectF, paint);
-            canvas.restore();
+            float x = leftPadding + radius * ((i + 1) * 2 - 1) + space * i;
+            float y = getHeight() / 2 - getHeight() / 4 * mAnimatedValue[i];
+            canvas.drawCircle(x, y, radius, paint);
         }
     }
-
 }

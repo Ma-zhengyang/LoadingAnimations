@@ -10,12 +10,15 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
-import com.example.mzy.indicators.Circle.DoubleArcIndicator;
-import com.example.mzy.indicators.Circle.BallScaleIndicator;
+import com.example.mzy.indicators.Circle.ArcRotateIndicator;
+import com.example.mzy.indicators.Circle.CircleScaleIndicator;
 import com.example.mzy.indicators.Circle.BasketBallIndicator;
-import com.example.mzy.indicators.Circle.CollisionIndicator;
-import com.example.mzy.indicators.Circle.DoubleArcScaleRotateIndicator;
+import com.example.mzy.indicators.Circle.CircleCollisionIndicator;
+import com.example.mzy.indicators.Circle.ArcRotateScaleIndicator;
+import com.example.mzy.indicators.Circle.CircleWaveIndicator;
 import com.example.mzy.indicators.Circle.DropIndicator;
+import com.example.mzy.indicators.Circle.JumpIndicator;
+import com.example.mzy.indicators.Circle.TrackIndicator;
 import com.example.mzy.indicators.Rect.ChartRectIndicator1;
 import com.example.mzy.indicators.Rect.ChartRectIndicator2;
 import com.example.mzy.indicators.Rect.ParallelogramIndicator;
@@ -85,20 +88,26 @@ public class LoadingIndicator extends View {
             return new BasketBallIndicator(context);
         } else if ("StarIndicator".equals(indicatorName)) {
             return new StarIndicator(context);
-        } else if ("BallScaleIndicator".equals(indicatorName)) {
-            return new BallScaleIndicator(context);
+        } else if ("CircleScaleIndicator".equals(indicatorName)) {
+            return new CircleScaleIndicator(context);
+        } else if ("CircleWaveIndicator".equals(indicatorName)) {
+            return new CircleWaveIndicator(context);
+        } else if ("JumpIndicator".equals(indicatorName)) {
+            return new JumpIndicator(context);
+        } else if ("CircleCollisionIndicator".equals(indicatorName)) {
+            return new CircleCollisionIndicator(context);
         } else if ("DropIndicator".equals(indicatorName)) {
             return new DropIndicator(context);
-        } else if ("CollisionIndicator".equals(indicatorName)) {
-            return new CollisionIndicator(context);
+        } else if ("TrackIndicator".equals(indicatorName)) {
+            return new TrackIndicator(context);
         } else if ("ChartRectIndicator1".equals(indicatorName)) {
             return new ChartRectIndicator1(context);
         } else if ("ChartRectIndicator2".equals(indicatorName)) {
             return new ChartRectIndicator2(context);
-        } else if ("DoubleArcIndicator".equals(indicatorName)) {
-            return new DoubleArcIndicator(context);
-        } else if ("DoubleArcScaleRotateIndicator".equals(indicatorName)) {
-            return new DoubleArcScaleRotateIndicator(context);
+        } else if ("ArcRotateIndicator".equals(indicatorName)) {
+            return new ArcRotateIndicator(context);
+        } else if ("ArcRotateScaleIndicator".equals(indicatorName)) {
+            return new ArcRotateScaleIndicator(context);
         } else if ("ParallelogramIndicator".equals(indicatorName)) {
             return new ParallelogramIndicator(context);
         }

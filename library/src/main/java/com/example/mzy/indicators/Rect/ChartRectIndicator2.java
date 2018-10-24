@@ -46,9 +46,9 @@ public class ChartRectIndicator2 extends IndicatorDrawable {
     }
 
     @Override
-    protected ArrayList<ValueAnimator> getAnimation() {
+    protected ArrayList<Animator> getAnimation() {
 
-        ArrayList<ValueAnimator> list = new ArrayList<>();
+        ArrayList<Animator> list = new ArrayList<>();
 
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

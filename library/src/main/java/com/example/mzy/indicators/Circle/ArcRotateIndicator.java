@@ -1,5 +1,6 @@
 package com.example.mzy.indicators.Circle;
 
+import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -17,9 +18,9 @@ import java.util.ArrayList;
  * Created by mzy on 2018/10/3.
  */
 
-public class DoubleArcIndicator extends IndicatorDrawable {
+public class ArcRotateIndicator extends IndicatorDrawable {
 
-    private final String TAG = DoubleArcIndicator.class.getSimpleName();
+    private final String TAG = ArcRotateIndicator.class.getSimpleName();
 
     private static final int IN_ANGLE = 90;
     private static final int OUT_ANGLE = 270;
@@ -31,8 +32,8 @@ public class DoubleArcIndicator extends IndicatorDrawable {
 
     private float mAnimatedValue;
 
-    public DoubleArcIndicator(Context context) {
-        Log.d(TAG, "DoubleArcIndicator: ");
+    public ArcRotateIndicator(Context context) {
+        Log.d(TAG, "ArcRotateIndicator: ");
         init(context);
     }
 
@@ -52,9 +53,9 @@ public class DoubleArcIndicator extends IndicatorDrawable {
     }
 
     @Override
-    protected ArrayList<ValueAnimator> getAnimation() {
+    protected ArrayList<Animator> getAnimation() {
 
-        ArrayList<ValueAnimator> list = new ArrayList<>();
+        ArrayList<Animator> list = new ArrayList<>();
 
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

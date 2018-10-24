@@ -24,7 +24,7 @@ publish {
     userOrg = 'mazhengyang'
     groupId = 'com.example.mzy.indicators'
     artifactId = 'LoadingAnimations'
-    publishVersion = '1.0.0'
+    publishVersion = '1.0.1'
     desc = 'a nice view of loading animation'
     website = 'https://github.com/Ma-zhengyang/LoadingAnimations'
 }

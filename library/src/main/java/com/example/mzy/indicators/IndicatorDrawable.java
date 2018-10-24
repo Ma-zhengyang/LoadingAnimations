@@ -1,5 +1,6 @@
 package com.example.mzy.indicators;
 
+import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -22,13 +23,13 @@ public abstract class IndicatorDrawable extends Drawable implements Animatable {
 
     private final String TAG = IndicatorDrawable.class.getSimpleName();
 
-    private ArrayList<ValueAnimator> mAnimatorsList;
+    private ArrayList<Animator> mAnimatorsList;
     private Rect mBounds = new Rect();
     protected Paint mPaint = new Paint();
 
     protected abstract void init(Context context);
 
-    protected abstract ArrayList<ValueAnimator> getAnimation();
+    protected abstract ArrayList<Animator> getAnimation();
 
     protected abstract void draw(Canvas canvas, Paint paint);
 
@@ -105,7 +106,7 @@ public abstract class IndicatorDrawable extends Drawable implements Animatable {
     }
 
     private void startAnimation() {
-        for (ValueAnimator animator : mAnimatorsList) {
+        for (Animator animator : mAnimatorsList) {
             if (!animator.isStarted()) {
                 animator.start();
             }
@@ -113,7 +114,7 @@ public abstract class IndicatorDrawable extends Drawable implements Animatable {
     }
 
     private void stopAnimation() {
-        for (ValueAnimator animator : mAnimatorsList) {
+        for (Animator animator : mAnimatorsList) {
             if (animator.isStarted()) {
                 animator.end();
             }

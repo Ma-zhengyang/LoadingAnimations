@@ -1,5 +1,6 @@
 package com.example.mzy.indicators.Circle;
 
+import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -15,9 +16,9 @@ import java.util.ArrayList;
  * Created by mazhengyang on 18-9-4.
  */
 
-public class BallScaleIndicator extends IndicatorDrawable {
+public class CircleScaleIndicator extends IndicatorDrawable {
 
-    private final String TAG = BallScaleIndicator.class.getSimpleName();
+    private final String TAG = CircleScaleIndicator.class.getSimpleName();
 
     private final int mCount = 4;
     private float space;//相邻两圆间距
@@ -28,8 +29,8 @@ public class BallScaleIndicator extends IndicatorDrawable {
             1.0f, 1.0f, 1.0f, 1.0f
     };
 
-    public BallScaleIndicator(Context context) {
-        Log.d(TAG, "BallScaleIndicator: ");
+    public CircleScaleIndicator(Context context) {
+        Log.d(TAG, "CircleScaleIndicator: ");
         init(context);
     }
 
@@ -45,11 +46,11 @@ public class BallScaleIndicator extends IndicatorDrawable {
     }
 
     @Override
-    protected ArrayList<ValueAnimator> getAnimation() {
+    protected ArrayList<Animator> getAnimation() {
 
         int[] delay = new int[]{100, 200, 300, 400};
 
-        ArrayList<ValueAnimator> list = new ArrayList<>();
+        ArrayList<Animator> list = new ArrayList<>();
 
         for (int i = 0; i < mCount; i++) {
             final int index = i;

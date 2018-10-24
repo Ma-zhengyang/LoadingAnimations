@@ -1,5 +1,6 @@
 package com.example.mzy.indicators.Circle;
 
+import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -38,7 +39,7 @@ public class BasketBallIndicator extends IndicatorDrawable {
     }
 
     @Override
-    protected ArrayList<ValueAnimator> getAnimation() {
+    protected ArrayList<Animator> getAnimation() {
 
         /**
          *    |___o
@@ -46,7 +47,7 @@ public class BasketBallIndicator extends IndicatorDrawable {
          *    |
          *    |
          */
-        ArrayList<ValueAnimator> list = new ArrayList<>();
+        ArrayList<Animator> list = new ArrayList<>();
 
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(0.25f, 0.5f);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
