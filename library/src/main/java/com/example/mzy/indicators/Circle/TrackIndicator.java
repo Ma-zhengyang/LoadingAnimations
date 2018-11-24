@@ -100,7 +100,6 @@ public class TrackIndicator extends IndicatorDrawable {
 
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.playTogether(translationX, scaleXY);
-            animatorSet.start();
 
             list.add(animatorSet);
         }

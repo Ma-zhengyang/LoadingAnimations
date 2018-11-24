@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 
 import com.example.mzy.indicators.IndicatorDrawable;
@@ -52,7 +53,7 @@ public class ArcRotateScaleIndicator extends IndicatorDrawable {
 
         ArrayList<Animator> list = new ArrayList<>();
 
-        ValueAnimator scaleAnimator = ValueAnimator.ofFloat(1.0f, 0.0f, 1.0f);
+        ValueAnimator scaleAnimator = ValueAnimator.ofFloat(1.0f, 0.5f, 1.0f);
         scaleAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -74,7 +75,7 @@ public class ArcRotateScaleIndicator extends IndicatorDrawable {
             }
         });
 
-        rotateAnimator.setInterpolator(new LinearInterpolator());
+        rotateAnimator.setInterpolator(new AccelerateInterpolator());
         rotateAnimator.setRepeatCount(ValueAnimator.INFINITE);
         rotateAnimator.setDuration(1000);
 
@@ -112,15 +113,9 @@ public class ArcRotateScaleIndicator extends IndicatorDrawable {
          *           |
          *          90
          */
-//        paint.setColor(Color.WHITE);
-        if (mScaleValue < 0.1f) {
-            paint.setStyle(Paint.Style.FILL);
-            canvas.drawCircle(0, 0, radius, paint);
-        } else {
-            paint.setStyle(Paint.Style.STROKE);
-            canvas.drawArc(mRectF, 225, 90, false, paint);
-            canvas.drawArc(mRectF, 45, 90, false, paint);
-        }
+        paint.setStyle(Paint.Style.STROKE);
+        canvas.drawArc(mRectF, 225, 90, false, paint);
+        canvas.drawArc(mRectF, 45, 90, false, paint);
 
         canvas.restore();
 

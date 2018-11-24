@@ -35,7 +35,6 @@
 
     </LinearLayout>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -71,6 +70,11 @@
         <com.example.mzy.indicators.LoadingIndicator
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:indicatorName="CircleRotateScaleIndicator" />
+
+        <com.example.mzy.indicators.LoadingIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:indicatorName="ChartRectIndicator1" />
 
         <com.example.mzy.indicators.LoadingIndicator
@@ -83,17 +87,17 @@
             android:layout_height="wrap_content"
             app:indicatorName="ParallelogramIndicator" />
 
-        <com.example.mzy.indicators.LoadingIndicator
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:indicatorName="ArcRotateIndicator" />
-
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
+        <com.example.mzy.indicators.LoadingIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:indicatorName="ArcRotateIndicator" />
 
         <com.example.mzy.indicators.LoadingIndicator
             android:layout_width="wrap_content"
