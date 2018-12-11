@@ -105,12 +105,13 @@ public class CircleRotateScaleIndicator extends IndicatorDrawable {
 
     private void drawBall(Canvas canvas, Paint paint) {
 
+        //五个圆的中心点到每个小圆的圆心距离
         float out_radius = getWidth() / 10;
         float radius = getWidth() / 25;
 
         for (int i = 0; i < mCount; i++) {
 
-            int degree = (int) (360 / mCount * i + mAnimatedValue);
+            int degree = (int) (360 / mCount * i + mAnimatedValue);//改成负值变成逆时针
             double angle = degree * Math.PI / 180;
             float x = getWidth() / 2 + out_radius * (float) Math.cos(angle);
             float y = getHeight() / 2 + out_radius * (float) Math.sin(angle);

@@ -97,6 +97,11 @@
         <com.example.mzy.indicators.LoadingIndicator
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:indicatorName="RectJumpMoveIndicator" />
+
+        <com.example.mzy.indicators.LoadingIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:indicatorName="ArcRotateIndicator" />
 
         <com.example.mzy.indicators.LoadingIndicator

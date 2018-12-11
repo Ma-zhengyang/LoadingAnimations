@@ -23,6 +23,7 @@ import com.example.mzy.indicators.Circle.TrackIndicator;
 import com.example.mzy.indicators.Rect.ChartRectIndicator1;
 import com.example.mzy.indicators.Rect.ChartRectIndicator2;
 import com.example.mzy.indicators.Rect.ParallelogramIndicator;
+import com.example.mzy.indicators.Rect.RectJumpMoveIndicator;
 import com.example.mzy.indicators.Star.StarIndicator;
 
 /**
@@ -109,6 +110,8 @@ public class LoadingIndicator extends View {
             return new ChartRectIndicator2(context);
         } else if ("ArcRotateIndicator".equals(indicatorName)) {
             return new ArcRotateIndicator(context);
+        } else if ("RectJumpMoveIndicator".equals(indicatorName)) {
+            return new RectJumpMoveIndicator(context);
         } else if ("ArcRotateScaleIndicator".equals(indicatorName)) {
             return new ArcRotateScaleIndicator(context);
         } else if ("ParallelogramIndicator".equals(indicatorName)) {

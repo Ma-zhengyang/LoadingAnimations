@@ -16,10 +16,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    buildToolsVersion '27.0.1'
 }
 
 dependencies {
-
     configurations.all {
         resolutionStrategy.force 'com.android.support:support-annotations:27.0.1'
     }
@@ -31,6 +31,5 @@ dependencies {
     //recyclerview
     implementation 'com.android.support:recyclerview-v7:27.0.1'
     implementation 'com.android.support:design:27.0.1'
-
     compile project(path: ':library')
 }

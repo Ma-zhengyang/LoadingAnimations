@@ -48,7 +48,6 @@ public class ParallelogramIndicator extends IndicatorDrawable {
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setStrokeWidth(1);
         mPaint.setColor(Color.WHITE);
-        mPaint.setAntiAlias(true);
 
         space = dip2px(context, 5.0f);
     }
