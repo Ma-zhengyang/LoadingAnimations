@@ -42,7 +42,7 @@ public class ArcRotateIndicator extends IndicatorDrawable {
         Log.d(TAG, "init: ");
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setStrokeWidth(5);
+        mPaint.setStrokeWidth(dip2px(context, 1.0f));
         mPaint.setColor(Color.WHITE);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
         mPaint.setStrokeJoin(Paint.Join.ROUND);

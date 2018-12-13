@@ -11,14 +11,14 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.mzy.indicators.Circle.ArcRotateIndicator;
-import com.example.mzy.indicators.Circle.CircleScaleIndicator;
+import com.example.mzy.indicators.Circle.ArcRotateScaleIndicator;
 import com.example.mzy.indicators.Circle.BasketBallIndicator;
 import com.example.mzy.indicators.Circle.CircleCollisionIndicator;
-import com.example.mzy.indicators.Circle.ArcRotateScaleIndicator;
+import com.example.mzy.indicators.Circle.CircleRotateScaleIndicator;
+import com.example.mzy.indicators.Circle.CircleScaleIndicator;
 import com.example.mzy.indicators.Circle.CircleWaveIndicator;
 import com.example.mzy.indicators.Circle.DropIndicator;
 import com.example.mzy.indicators.Circle.JumpIndicator;
-import com.example.mzy.indicators.Circle.CircleRotateScaleIndicator;
 import com.example.mzy.indicators.Circle.TrackIndicator;
 import com.example.mzy.indicators.Rect.ChartRectIndicator1;
 import com.example.mzy.indicators.Rect.ChartRectIndicator2;
@@ -197,6 +197,9 @@ public class LoadingIndicator extends View {
 
         final Drawable d = mIndicator;
         if (d != null) {
+            Log.d(TAG, "onMeasure: d.getIntrinsicWidth()="+d.getIntrinsicWidth());
+            Log.d(TAG, "onMeasure: d.getIntrinsicHeight()="+d.getIntrinsicHeight());
+
             dw = Math.max(mMinWidth, Math.min(mMaxWidth, d.getIntrinsicWidth()));
             dh = Math.max(mMinHeight, Math.min(mMaxHeight, d.getIntrinsicHeight()));
         }

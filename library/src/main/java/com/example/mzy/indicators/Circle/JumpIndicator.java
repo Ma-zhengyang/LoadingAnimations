@@ -40,7 +40,7 @@ public class JumpIndicator extends IndicatorDrawable {
         Log.d(TAG, "init: ");
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
-        mPaint.setStrokeWidth(1);
+        mPaint.setStrokeWidth(dip2px(context, 1.0f));
         mPaint.setColor(Color.WHITE);
 
         space = dip2px(context, 2.0f);

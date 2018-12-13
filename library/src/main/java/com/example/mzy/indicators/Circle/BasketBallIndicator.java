@@ -34,7 +34,7 @@ public class BasketBallIndicator extends IndicatorDrawable {
         Log.d(TAG, "init: ");
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
-        mPaint.setStrokeWidth(1);
+        mPaint.setStrokeWidth(dip2px(context, 1.0f));
         mPaint.setColor(Color.WHITE);
     }
 
@@ -106,7 +106,10 @@ public class BasketBallIndicator extends IndicatorDrawable {
         float cut = radius * ratio * 0.7f;
 
         paint.setColor(Color.GRAY);
-        RectF rectF = new RectF(x - cut, getHeight() / 2 + 10, x + cut, getHeight() / 2 + 20);
+        RectF rectF = new RectF(x - cut,
+                getHeight() / 2 + radius / 2,
+                x + cut,
+                getHeight() / 2 + radius);
         canvas.drawOval(rectF, paint);
     }
 

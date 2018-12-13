@@ -44,13 +44,13 @@ public class StarIndicator extends IndicatorDrawable {
         Log.d(TAG, "init: ");
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
-        mPaint.setStrokeWidth(1);
+        mPaint.setStrokeWidth(dip2px(context, 1.0f));
         mPaint.setColor(Color.WHITE);
 
-        starHeight = dip2px(context, 20.0f);
-        mStarModel.setDrawingOuterRect(0, 0, starHeight);
-
-        mShadowWidth = dip2px(context, 10.0f);
+//        starHeight = dip2px(context, 20.0f);
+//        mStarModel.setDrawingOuterRect(0, 0, starHeight);
+//
+//        mShadowWidth = dip2px(context, 10.0f);
     }
 
     @Override
@@ -77,6 +77,13 @@ public class StarIndicator extends IndicatorDrawable {
 
     @Override
     protected void draw(Canvas canvas, Paint paint) {
+
+        if (starHeight == 0) {
+            starHeight = getWidth() / 5;
+            mStarModel.setDrawingOuterRect(0, 0, starHeight);
+
+            mShadowWidth = getWidth() / 5;
+        }
 
         canvas.save();
 
@@ -138,20 +145,26 @@ public class StarIndicator extends IndicatorDrawable {
 
     private void drawShadow(Canvas canvas, Paint paint) {
 
-        float value;
+        float value;//0 ~ 0.5
         if (mAnimatedValue <= 0.5) {//下落
             value = mAnimatedValue;
         } else {//弹起
             value = 1 - mAnimatedValue;
         }
 
+        if (value < 0.1) {
+            return;
+        }
+
+        float cut = mShadowWidth * value * 0.7f;
+
         //getHeight() / 4 + 0.5f * starHeight为星的top那个角的y坐标
         float y = getHeight() / 4 + 0.5f * starHeight + starHeight;
 
-        mShadowRect.set(getWidth() / 2 - value * mShadowWidth - 10,
-                y,
-                getWidth() / 2 + value * mShadowWidth + 10,
-                y + 8);
+        mShadowRect.set(getWidth() / 2 - cut,
+                y + mShadowWidth / 8,
+                getWidth() / 2 + cut,
+                y + mShadowWidth / 4);
 
         canvas.drawOval(mShadowRect, paint);
     }

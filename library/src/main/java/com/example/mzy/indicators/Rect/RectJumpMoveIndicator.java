@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class RectJumpMoveIndicator extends IndicatorDrawable {
 
-    //TODO 暂未解决向右移动，倒数第二个方块伸缩效果，向左移动，顺
+    //TODO 暂未解决向右移动，倒数第二个方块伸缩效果，向左移动，顺数第二个方块伸缩效果
 
     private final String TAG = RectJumpMoveIndicator.class.getSimpleName();
 
@@ -46,7 +46,7 @@ public class RectJumpMoveIndicator extends IndicatorDrawable {
         Log.d(TAG, "init: ");
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
-        mPaint.setStrokeWidth(1);
+        mPaint.setStrokeWidth(dip2px(context, 1.0f));
         mPaint.setColor(Color.WHITE);
     }
 

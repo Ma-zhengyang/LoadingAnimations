@@ -1,115 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFC591"
-    android:orientation="vertical"
     tools:context="com.example.mzy.loadinganimations.MainActivity">
 
     <LinearLayout
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:background="#FFFFC591"
+        android:orientation="vertical">
 
-        <com.example.mzy.indicators.LoadingIndicator
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:indicatorName="BasketBallIndicator" />
+            android:orientation="horizontal">
 
-        <com.example.mzy.indicators.LoadingIndicator
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:indicatorName="StarIndicator" />
+            <com.example.mzy.indicators.LoadingIndicator
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:indicatorName="BasketBallIndicator" />
 
-        <com.example.mzy.indicators.LoadingIndicator
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:indicatorName="CircleScaleIndicator" />
+            <com.example.mzy.indicators.LoadingIndicator
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:indicatorName="StarIndicator" />
 
-        <com.example.mzy.indicators.LoadingIndicator
-            android:layout_width="wrap_content"
+            <com.example.mzy.indicators.LoadingIndicator
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:indicatorName="CircleScaleIndicator" />
+
+            <com.example.mzy.indicators.LoadingIndicator
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:indicatorName="CircleWaveIndicator" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:indicatorName="CircleWaveIndicator" />
+            android:orientation="horizontal">
+
+            <com.example.mzy.indicators.LoadingIndicator
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:indicatorName="JumpIndicator" />
+
+            <com.example.mzy.indicators.LoadingIndicator
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:indicatorName="CircleCollisionIndicator" />
+
+            <com.example.mzy.indicators.LoadingIndicator
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:indicatorName="DropIndicator" />
+
+            <com.example.mzy.indicators.LoadingIndicator
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:indicatorName="TrackIndicator" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.example.mzy.indicators.LoadingIndicator
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:indicatorName="CircleRotateScaleIndicator" />
+
+            <com.example.mzy.indicators.LoadingIndicator
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:indicatorName="ChartRectIndicator1" />
+
+            <com.example.mzy.indicators.LoadingIndicator
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:indicatorName="ChartRectIndicator2" />
+
+            <com.example.mzy.indicators.LoadingIndicator
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:indicatorName="ParallelogramIndicator" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.example.mzy.indicators.LoadingIndicator
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:indicatorName="RectJumpMoveIndicator" />
+
+            <com.example.mzy.indicators.LoadingIndicator
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:indicatorName="ArcRotateIndicator" />
+
+            <com.example.mzy.indicators.LoadingIndicator
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:indicatorName="ArcRotateScaleIndicator" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <com.example.mzy.indicators.LoadingIndicator
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:indicatorName="JumpIndicator" />
-
-        <com.example.mzy.indicators.LoadingIndicator
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:indicatorName="CircleCollisionIndicator" />
-
-        <com.example.mzy.indicators.LoadingIndicator
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:indicatorName="DropIndicator" />
-
-        <com.example.mzy.indicators.LoadingIndicator
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:indicatorName="TrackIndicator" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <com.example.mzy.indicators.LoadingIndicator
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:indicatorName="CircleRotateScaleIndicator" />
-
-        <com.example.mzy.indicators.LoadingIndicator
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:indicatorName="ChartRectIndicator1" />
-
-        <com.example.mzy.indicators.LoadingIndicator
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:indicatorName="ChartRectIndicator2" />
-
-        <com.example.mzy.indicators.LoadingIndicator
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:indicatorName="ParallelogramIndicator" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <com.example.mzy.indicators.LoadingIndicator
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:indicatorName="RectJumpMoveIndicator" />
-
-        <com.example.mzy.indicators.LoadingIndicator
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:indicatorName="ArcRotateIndicator" />
-
-        <com.example.mzy.indicators.LoadingIndicator
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:indicatorName="ArcRotateScaleIndicator" />
-
-    </LinearLayout>
+</ScrollView>
 
 
-</LinearLayout>
+
+
+
