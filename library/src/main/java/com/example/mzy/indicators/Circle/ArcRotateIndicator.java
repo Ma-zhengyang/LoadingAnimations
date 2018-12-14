@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
@@ -32,8 +31,14 @@ public class ArcRotateIndicator extends IndicatorDrawable {
 
     private float mAnimatedValue;
 
-    public ArcRotateIndicator(Context context) {
+    public ArcRotateIndicator(Context context, int indicatorColor, int indicatorSpeed) {
         Log.d(TAG, "ArcRotateIndicator: ");
+        this.indicatorColor = indicatorColor;
+        this.indicatorSpeed = indicatorSpeed;
+        if (indicatorSpeed <= 0) {
+            this.indicatorSpeed = 2000;
+        }
+
         init(context);
     }
 
@@ -43,7 +48,7 @@ public class ArcRotateIndicator extends IndicatorDrawable {
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(dip2px(context, 1.0f));
-        mPaint.setColor(Color.WHITE);
+        mPaint.setColor(indicatorColor);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
         mPaint.setStrokeJoin(Paint.Join.ROUND);
         mPaint.setDither(true);
@@ -68,7 +73,7 @@ public class ArcRotateIndicator extends IndicatorDrawable {
 
         valueAnimator.setInterpolator(new LinearInterpolator());
         valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        valueAnimator.setDuration(2000);
+        valueAnimator.setDuration(indicatorSpeed);
         list.add(valueAnimator);
 
         return list;

@@ -52,8 +52,14 @@ public class TrackIndicator extends IndicatorDrawable {
 
     private boolean drawAssist = false;
 
-    public TrackIndicator(Context context) {
+    public TrackIndicator(Context context, int indicatorColor, int indicatorSpeed) {
         Log.d(TAG, "TrackIndicator: ");
+        this.indicatorColor = indicatorColor;
+        this.indicatorSpeed = indicatorSpeed;
+        if (indicatorSpeed <= 0) {
+            this.indicatorSpeed = 2000;
+        }
+
         init(context);
     }
 
@@ -63,7 +69,7 @@ public class TrackIndicator extends IndicatorDrawable {
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setStrokeWidth(dip2px(context, 1.0f));
-        mPaint.setColor(Color.WHITE);
+        mPaint.setColor(indicatorColor);
     }
 
     @Override
@@ -75,12 +81,12 @@ public class TrackIndicator extends IndicatorDrawable {
             final int index = i;
             ValueAnimator translationX = ValueAnimator.ofFloat(translationX_Array[i]);
             translationX.setRepeatCount(ValueAnimator.INFINITE);
-            translationX.setDuration(2000);
+            translationX.setDuration(indicatorSpeed);
             translationX.setInterpolator(new LinearInterpolator());
 
             ValueAnimator scaleXY = ValueAnimator.ofFloat(scaleXY_Array[i]);
             scaleXY.setRepeatCount(ValueAnimator.INFINITE);
-            scaleXY.setDuration(2000);
+            scaleXY.setDuration(indicatorSpeed);
             translationX.setInterpolator(new LinearInterpolator());
 
             translationX.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

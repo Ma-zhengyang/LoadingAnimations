@@ -30,8 +30,14 @@ public class CircleRotateScaleIndicator extends IndicatorDrawable {
 
     private boolean drawAssist = false;
 
-    public CircleRotateScaleIndicator(Context context) {
+    public CircleRotateScaleIndicator(Context context, int indicatorColor, int indicatorSpeed) {
         Log.d(TAG, "CircleRotateScaleIndicator: ");
+        this.indicatorColor = indicatorColor;
+        this.indicatorSpeed = indicatorSpeed;
+        if (indicatorSpeed <= 0) {
+            this.indicatorSpeed = 2000;
+        }
+
         init(context);
     }
 
@@ -41,7 +47,7 @@ public class CircleRotateScaleIndicator extends IndicatorDrawable {
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setStrokeWidth(dip2px(context, 1.0f));
-        mPaint.setColor(Color.WHITE);
+        mPaint.setColor(indicatorColor);
     }
 
     @Override
@@ -51,7 +57,7 @@ public class CircleRotateScaleIndicator extends IndicatorDrawable {
 
         ValueAnimator rotateAnimator = ValueAnimator.ofFloat(0, 360);
         rotateAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        rotateAnimator.setDuration(2000);
+        rotateAnimator.setDuration(indicatorSpeed);
         rotateAnimator.setInterpolator(new LinearInterpolator());
 
         rotateAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -66,7 +72,7 @@ public class CircleRotateScaleIndicator extends IndicatorDrawable {
         for (int i = 0; i < mCount; i++) {
             final int index = i;
             ValueAnimator scaleAnimator = ValueAnimator.ofFloat(1, 0.4f, 1);
-            scaleAnimator.setDuration(1000);
+            scaleAnimator.setDuration(indicatorSpeed);
             scaleAnimator.setRepeatCount(ValueAnimator.INFINITE);
             scaleAnimator.setStartDelay(delays[i]);
             scaleAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

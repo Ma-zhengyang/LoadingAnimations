@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
@@ -22,15 +21,21 @@ public class ChartRectIndicator2 extends IndicatorDrawable {
     private final String TAG = ChartRectIndicator2.class.getSimpleName();
 
     private final int mCount = 5;
-    private  float rectMax;
+    private float rectMax;
     private int mCurrAnimatorState = 0;
 
     private float mAnimatedValue;
     private RectF rectF = new RectF();
     boolean repeatRunned = false;
 
-    public ChartRectIndicator2(Context context) {
+    public ChartRectIndicator2(Context context, int indicatorColor, int indicatorSpeed) {
         Log.d(TAG, "ChartRectIndicator2: ");
+        this.indicatorColor = indicatorColor;
+        this.indicatorSpeed = indicatorSpeed;
+        if (indicatorSpeed <= 0) {
+            this.indicatorSpeed = 1000;
+        }
+
         init(context);
     }
 
@@ -40,7 +45,7 @@ public class ChartRectIndicator2 extends IndicatorDrawable {
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setStrokeWidth(dip2px(context, 1.0f));
-        mPaint.setColor(Color.WHITE);
+        mPaint.setColor(indicatorColor);
 
         rectMax = dip2px(context, 10.0f);
     }
@@ -95,7 +100,7 @@ public class ChartRectIndicator2 extends IndicatorDrawable {
         });
 
         valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        valueAnimator.setDuration(1000);
+        valueAnimator.setDuration(indicatorSpeed);
         list.add(valueAnimator);
 
         return list;

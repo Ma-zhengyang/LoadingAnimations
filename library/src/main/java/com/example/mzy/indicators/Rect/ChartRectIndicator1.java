@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
@@ -28,8 +27,14 @@ public class ChartRectIndicator1 extends IndicatorDrawable {
     };
     private RectF rectF = new RectF();
 
-    public ChartRectIndicator1(Context context) {
+    public ChartRectIndicator1(Context context, int indicatorColor, int indicatorSpeed) {
         Log.d(TAG, "ChartRectIndicator1: ");
+        this.indicatorColor = indicatorColor;
+        this.indicatorSpeed = indicatorSpeed;
+        if (indicatorSpeed <= 0) {
+            this.indicatorSpeed = 1000;
+        }
+
         init(context);
     }
 
@@ -39,7 +44,7 @@ public class ChartRectIndicator1 extends IndicatorDrawable {
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setStrokeWidth(dip2px(context, 1.0f));
-        mPaint.setColor(Color.WHITE);
+        mPaint.setColor(indicatorColor);
     }
 
     @Override
@@ -61,7 +66,7 @@ public class ChartRectIndicator1 extends IndicatorDrawable {
             });
 
             valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
-            valueAnimator.setDuration(1000);
+            valueAnimator.setDuration(indicatorSpeed);
             valueAnimator.setStartDelay(delay[i]);
             list.add(valueAnimator);
         }

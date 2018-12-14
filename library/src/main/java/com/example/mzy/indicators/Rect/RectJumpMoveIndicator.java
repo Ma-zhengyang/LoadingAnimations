@@ -36,8 +36,14 @@ public class RectJumpMoveIndicator extends IndicatorDrawable {
 
     private int currentJumpIndex = 0;
 
-    public RectJumpMoveIndicator(Context context) {
+    public RectJumpMoveIndicator(Context context, int indicatorColor, int indicatorSpeed) {
         Log.d(TAG, "RectJumpMoveIndicator: ");
+        this.indicatorColor = indicatorColor;
+        this.indicatorSpeed = indicatorSpeed;
+        if (indicatorSpeed <= 0) {
+            this.indicatorSpeed = 2000;
+        }
+
         init(context);
     }
 
@@ -47,7 +53,7 @@ public class RectJumpMoveIndicator extends IndicatorDrawable {
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setStrokeWidth(dip2px(context, 1.0f));
-        mPaint.setColor(Color.WHITE);
+        mPaint.setColor(indicatorColor);
     }
 
     @Override
@@ -78,7 +84,7 @@ public class RectJumpMoveIndicator extends IndicatorDrawable {
         valueAnimator.setInterpolator(new LinearInterpolator());
         valueAnimator.setRepeatMode(ValueAnimator.REVERSE);
         valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        valueAnimator.setDuration(2000);
+        valueAnimator.setDuration(indicatorSpeed);
         list.add(valueAnimator);
 
         return list;

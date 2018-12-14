@@ -1,11 +1,15 @@
 <resources>
 
+    <!--default value-->
+
     <style name="LoadingIndicator">
         <item name="minWidth">100dp</item>
         <item name="maxWidth">100dp</item>
         <item name="minHeight">100dp</item>
         <item name="maxHeight">100dp</item>
-        <item name="indicatorName"></item>
+        <item name="indicatorName">BasketBallIndicator</item>
+        <item name="indicatorColor">#FFFFFFFF</item>
+        <item name="indicatorSpeed">0</item>
     </style>
 
 </resources>

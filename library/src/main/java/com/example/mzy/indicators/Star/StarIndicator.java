@@ -34,8 +34,14 @@ public class StarIndicator extends IndicatorDrawable {
     private RectF mShadowRect = new RectF();
     private float mShadowWidth;
 
-    public StarIndicator(Context context) {
+    public StarIndicator(Context context, int indicatorColor, int indicatorSpeed) {
         Log.d(TAG, "StarIndicator: ");
+        this.indicatorColor = indicatorColor;
+        this.indicatorSpeed = indicatorSpeed;
+        if (indicatorSpeed <= 0) {
+            this.indicatorSpeed = 2000;
+        }
+
         init(context);
     }
 
@@ -45,7 +51,7 @@ public class StarIndicator extends IndicatorDrawable {
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setStrokeWidth(dip2px(context, 1.0f));
-        mPaint.setColor(Color.WHITE);
+        mPaint.setColor(indicatorColor);
 
 //        starHeight = dip2px(context, 20.0f);
 //        mStarModel.setDrawingOuterRect(0, 0, starHeight);
@@ -69,7 +75,7 @@ public class StarIndicator extends IndicatorDrawable {
 
         valueAnimator.setInterpolator(new DecelerateInterpolator());
         valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        valueAnimator.setDuration(2000);
+        valueAnimator.setDuration(indicatorSpeed);
         list.add(valueAnimator);
 
         return list;
@@ -109,6 +115,7 @@ public class StarIndicator extends IndicatorDrawable {
     private void drawStar(Canvas canvas, Paint paint) {
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setPathEffect(pathEffect);
+        paint.setColor(indicatorColor);
 
         VertexF prev = mStarModel.getVertex(1);
         Path path = new Path();
@@ -144,6 +151,8 @@ public class StarIndicator extends IndicatorDrawable {
     }
 
     private void drawShadow(Canvas canvas, Paint paint) {
+
+        paint.setColor(Color.GRAY);
 
         float value;//0 ~ 0.5
         if (mAnimatedValue <= 0.5) {//下落

@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.Log;
@@ -29,8 +28,14 @@ public class ArcRotateScaleIndicator extends IndicatorDrawable {
     private float mScaleValue;
     private float mRotateValue;
 
-    public ArcRotateScaleIndicator(Context context) {
+    public ArcRotateScaleIndicator(Context context, int indicatorColor, int indicatorSpeed) {
         Log.d(TAG, "ArcRotateScaleIndicator: ");
+        this.indicatorColor = indicatorColor;
+        this.indicatorSpeed = indicatorSpeed;
+        if (indicatorSpeed <= 0) {
+            this.indicatorSpeed = 2000;
+        }
+
         init(context);
     }
 
@@ -40,7 +45,7 @@ public class ArcRotateScaleIndicator extends IndicatorDrawable {
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(dip2px(context, 1.0f));
-        mPaint.setColor(Color.WHITE);
+        mPaint.setColor(indicatorColor);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
         mPaint.setStrokeJoin(Paint.Join.ROUND);
         mPaint.setDither(true);
@@ -64,7 +69,7 @@ public class ArcRotateScaleIndicator extends IndicatorDrawable {
 
         scaleAnimator.setInterpolator(new LinearInterpolator());
         scaleAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        scaleAnimator.setDuration(2000);
+        scaleAnimator.setDuration(indicatorSpeed);
 
         ValueAnimator rotateAnimator = ValueAnimator.ofFloat(0, 180, 360);
         rotateAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -77,7 +82,7 @@ public class ArcRotateScaleIndicator extends IndicatorDrawable {
 
         rotateAnimator.setInterpolator(new AccelerateInterpolator());
         rotateAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        rotateAnimator.setDuration(1000);
+        rotateAnimator.setDuration(indicatorSpeed / 2);
 
         list.add(scaleAnimator);
         list.add(rotateAnimator);

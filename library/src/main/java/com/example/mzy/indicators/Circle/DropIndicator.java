@@ -28,8 +28,14 @@ public class DropIndicator extends IndicatorDrawable {
 
     private boolean drawAssist = false;
 
-    public DropIndicator(Context context) {
-        Log.d(TAG, "DropIndicator: " + getWidth());
+    public DropIndicator(Context context, int indicatorColor, int indicatorSpeed) {
+        Log.d(TAG, "DropIndicator: ");
+        this.indicatorColor = indicatorColor;
+        this.indicatorSpeed = indicatorSpeed;
+        if (indicatorSpeed <= 0) {
+            this.indicatorSpeed = 1500;
+        }
+
         init(context);
     }
 
@@ -39,7 +45,7 @@ public class DropIndicator extends IndicatorDrawable {
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setStrokeWidth(dip2px(context, 1.0f));
-        mPaint.setColor(Color.WHITE);
+        mPaint.setColor(indicatorColor);
     }
 
     @Override
@@ -58,7 +64,7 @@ public class DropIndicator extends IndicatorDrawable {
 
         valueAnimator.setInterpolator(new LinearInterpolator());
         valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        valueAnimator.setDuration(1500);
+        valueAnimator.setDuration(indicatorSpeed);
         list.add(valueAnimator);
 
         return list;

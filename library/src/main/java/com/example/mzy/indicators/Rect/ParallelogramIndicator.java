@@ -36,8 +36,14 @@ public class ParallelogramIndicator extends IndicatorDrawable {
             1.0f, 1.0f, 1.0f
     };
 
-    public ParallelogramIndicator(Context context) {
+    public ParallelogramIndicator(Context context, int indicatorColor, int indicatorSpeed) {
         Log.d(TAG, "ParallelogramIndicator: ");
+        this.indicatorColor = indicatorColor;
+        this.indicatorSpeed = indicatorSpeed;
+        if (indicatorSpeed <= 0) {
+            this.indicatorSpeed = 1000;
+        }
+
         init(context);
     }
 
@@ -47,7 +53,7 @@ public class ParallelogramIndicator extends IndicatorDrawable {
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setStrokeWidth(dip2px(context, 1.0f));
-        mPaint.setColor(Color.WHITE);
+        mPaint.setColor(indicatorColor);
 
         space = dip2px(context, 5.0f);
     }
@@ -70,7 +76,7 @@ public class ParallelogramIndicator extends IndicatorDrawable {
             });
 
             valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
-            valueAnimator.setDuration(1000);
+            valueAnimator.setDuration(indicatorSpeed);
             valueAnimator.setStartDelay(delay[i]);
             list.add(valueAnimator);
         }

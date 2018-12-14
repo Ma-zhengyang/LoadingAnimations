@@ -4,14 +4,12 @@ import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
-
 
 import com.example.mzy.indicators.IndicatorDrawable;
 
@@ -36,8 +34,14 @@ public class CircleCollisionIndicator extends IndicatorDrawable {
     private static final float DEFAULT_BALL_RADIUS = 5.0f;
     private static final float MAX_MOVE_OFFSET = 50.0f;
 
-    public CircleCollisionIndicator(Context context) {
+    public CircleCollisionIndicator(Context context, int indicatorColor, int indicatorSpeed) {
         Log.d(TAG, "CircleCollisionIndicator: ");
+        this.indicatorColor = indicatorColor;
+        this.indicatorSpeed = indicatorSpeed;
+        if (indicatorSpeed <= 0) {
+            this.indicatorSpeed = 2000;
+        }
+
         init(context);
     }
 
@@ -47,7 +51,7 @@ public class CircleCollisionIndicator extends IndicatorDrawable {
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setStrokeWidth(dip2px(context, 1.0f));
-        mPaint.setColor(Color.WHITE);
+        mPaint.setColor(indicatorColor);
 
         maxMoveXOffset = dip2px(context, 30.0f);
     }
@@ -68,7 +72,7 @@ public class CircleCollisionIndicator extends IndicatorDrawable {
 
         valueAnimator.setInterpolator(new LinearInterpolator());
         valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        valueAnimator.setDuration(2000);
+        valueAnimator.setDuration(indicatorSpeed);
         list.add(valueAnimator);
 
         return list;

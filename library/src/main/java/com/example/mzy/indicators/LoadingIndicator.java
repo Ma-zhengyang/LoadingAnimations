@@ -3,6 +3,7 @@ package com.example.mzy.indicators;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
@@ -14,11 +15,12 @@ import com.example.mzy.indicators.Circle.ArcRotateIndicator;
 import com.example.mzy.indicators.Circle.ArcRotateScaleIndicator;
 import com.example.mzy.indicators.Circle.BasketBallIndicator;
 import com.example.mzy.indicators.Circle.CircleCollisionIndicator;
+import com.example.mzy.indicators.Circle.CircleJumpIndicator;
+import com.example.mzy.indicators.Circle.CircleRotateIndicator;
 import com.example.mzy.indicators.Circle.CircleRotateScaleIndicator;
 import com.example.mzy.indicators.Circle.CircleScaleIndicator;
 import com.example.mzy.indicators.Circle.CircleWaveIndicator;
 import com.example.mzy.indicators.Circle.DropIndicator;
-import com.example.mzy.indicators.Circle.JumpIndicator;
 import com.example.mzy.indicators.Circle.TrackIndicator;
 import com.example.mzy.indicators.Rect.ChartRectIndicator1;
 import com.example.mzy.indicators.Rect.ChartRectIndicator2;
@@ -39,6 +41,8 @@ public class LoadingIndicator extends View {
     private int mMinHeight;
     private int mMaxHeight;
     private String indicatorName;
+    private int indicatorColor;
+    private int indicatorSpeed;
 
     private IndicatorDrawable mIndicator;
 
@@ -65,18 +69,22 @@ public class LoadingIndicator extends View {
         mMinHeight = ta.getDimensionPixelSize(R.styleable.LoadingIndicator_minHeight, 60);
         mMaxHeight = ta.getDimensionPixelSize(R.styleable.LoadingIndicator_maxHeight, 60);
         indicatorName = ta.getString(R.styleable.LoadingIndicator_indicatorName);
+        indicatorColor = ta.getColor(R.styleable.LoadingIndicator_indicatorColor, Color.WHITE);
+        indicatorSpeed = ta.getInteger(R.styleable.LoadingIndicator_indicatorSpeed, 0);
         ta.recycle();
 
         Log.d(TAG, "init: density=" + context.getResources().getDisplayMetrics().density);
         Log.d(TAG, "init: mMinWidth=" + mMinWidth + ", mMaxWidth=" + mMaxWidth);
         Log.d(TAG, "init: mMinHeight=" + mMinHeight + ", mMaxHeight=" + mMaxHeight);
         Log.d(TAG, "init: indicatorName=" + indicatorName);
+        Log.d(TAG, "init: indicatorColor=" + indicatorColor);
+        Log.d(TAG, "init: indicatorSpeed=" + indicatorSpeed);
 
         IndicatorDrawable indicatorDrawable = getIndicator(indicatorName, context);
-        if (indicatorDrawable == null) {
-            Log.e(TAG, "init: indicatorDrawable==null");
-            indicatorDrawable = new BasketBallIndicator(context);
-        }
+//        if (indicatorDrawable == null) {
+//            Log.e(TAG, "init: indicatorDrawable is null, set default: BasketBallIndicator");
+//            indicatorDrawable = new BasketBallIndicator(context, indicatorColor);
+//        }
         indicatorDrawable.setCallback(this);
         mIndicator = indicatorDrawable;
     }
@@ -87,35 +95,37 @@ public class LoadingIndicator extends View {
         }
 
         if ("BasketBallIndicator".equals(indicatorName)) {
-            return new BasketBallIndicator(context);
+            return new BasketBallIndicator(context, indicatorColor, indicatorSpeed);
         } else if ("StarIndicator".equals(indicatorName)) {
-            return new StarIndicator(context);
+            return new StarIndicator(context, indicatorColor, indicatorSpeed);
         } else if ("CircleScaleIndicator".equals(indicatorName)) {
-            return new CircleScaleIndicator(context);
+            return new CircleScaleIndicator(context, indicatorColor, indicatorSpeed);
         } else if ("CircleWaveIndicator".equals(indicatorName)) {
-            return new CircleWaveIndicator(context);
-        } else if ("JumpIndicator".equals(indicatorName)) {
-            return new JumpIndicator(context);
+            return new CircleWaveIndicator(context, indicatorColor, indicatorSpeed);
+        } else if ("CircleJumpIndicator".equals(indicatorName)) {
+            return new CircleJumpIndicator(context, indicatorColor, indicatorSpeed);
         } else if ("CircleCollisionIndicator".equals(indicatorName)) {
-            return new CircleCollisionIndicator(context);
+            return new CircleCollisionIndicator(context, indicatorColor, indicatorSpeed);
         } else if ("DropIndicator".equals(indicatorName)) {
-            return new DropIndicator(context);
+            return new DropIndicator(context, indicatorColor, indicatorSpeed);
         } else if ("TrackIndicator".equals(indicatorName)) {
-            return new TrackIndicator(context);
+            return new TrackIndicator(context, indicatorColor, indicatorSpeed);
         } else if ("CircleRotateScaleIndicator".equals(indicatorName)) {
-            return new CircleRotateScaleIndicator(context);
+            return new CircleRotateScaleIndicator(context, indicatorColor, indicatorSpeed);
         } else if ("ChartRectIndicator1".equals(indicatorName)) {
-            return new ChartRectIndicator1(context);
+            return new ChartRectIndicator1(context, indicatorColor, indicatorSpeed);
         } else if ("ChartRectIndicator2".equals(indicatorName)) {
-            return new ChartRectIndicator2(context);
+            return new ChartRectIndicator2(context, indicatorColor, indicatorSpeed);
         } else if ("ArcRotateIndicator".equals(indicatorName)) {
-            return new ArcRotateIndicator(context);
+            return new ArcRotateIndicator(context, indicatorColor, indicatorSpeed);
         } else if ("RectJumpMoveIndicator".equals(indicatorName)) {
-            return new RectJumpMoveIndicator(context);
+            return new RectJumpMoveIndicator(context, indicatorColor, indicatorSpeed);
         } else if ("ArcRotateScaleIndicator".equals(indicatorName)) {
-            return new ArcRotateScaleIndicator(context);
+            return new ArcRotateScaleIndicator(context, indicatorColor, indicatorSpeed);
         } else if ("ParallelogramIndicator".equals(indicatorName)) {
-            return new ParallelogramIndicator(context);
+            return new ParallelogramIndicator(context, indicatorColor, indicatorSpeed);
+        } else if ("CircleRotateIndicator".equals(indicatorName)) {
+            return new CircleRotateIndicator(context, indicatorColor, indicatorSpeed);
         }
         return null;
     }
@@ -197,8 +207,8 @@ public class LoadingIndicator extends View {
 
         final Drawable d = mIndicator;
         if (d != null) {
-            Log.d(TAG, "onMeasure: d.getIntrinsicWidth()="+d.getIntrinsicWidth());
-            Log.d(TAG, "onMeasure: d.getIntrinsicHeight()="+d.getIntrinsicHeight());
+            Log.d(TAG, "onMeasure: d.getIntrinsicWidth()=" + d.getIntrinsicWidth());
+            Log.d(TAG, "onMeasure: d.getIntrinsicHeight()=" + d.getIntrinsicHeight());
 
             dw = Math.max(mMinWidth, Math.min(mMaxWidth, d.getIntrinsicWidth()));
             dh = Math.max(mMinHeight, Math.min(mMaxHeight, d.getIntrinsicHeight()));

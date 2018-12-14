@@ -1,7 +1,6 @@
 package com.example.mzy.indicators;
 
 import android.animation.Animator;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -26,6 +25,8 @@ public abstract class IndicatorDrawable extends Drawable implements Animatable {
     private ArrayList<Animator> mAnimatorsList;
     private Rect mBounds = new Rect();
     protected Paint mPaint = new Paint();
+    protected int indicatorColor = Color.WHITE;
+    protected int indicatorSpeed = 0;
 
     protected abstract void init(Context context);
 

@@ -24,8 +24,14 @@ public class BasketBallIndicator extends IndicatorDrawable {
 
     private float mAnimatedValue = 0.0f;
 
-    public BasketBallIndicator(Context context) {
+    public BasketBallIndicator(Context context, int indicatorColor, int indicatorSpeed) {
         Log.d(TAG, "BasketBallIndicator: ");
+        this.indicatorColor = indicatorColor;
+        this.indicatorSpeed = indicatorSpeed;
+        if (indicatorSpeed <= 0) {
+            this.indicatorSpeed = 500;
+        }
+
         init(context);
     }
 
@@ -35,7 +41,7 @@ public class BasketBallIndicator extends IndicatorDrawable {
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setStrokeWidth(dip2px(context, 1.0f));
-        mPaint.setColor(Color.WHITE);
+        mPaint.setColor(indicatorColor);
     }
 
     @Override
@@ -61,7 +67,7 @@ public class BasketBallIndicator extends IndicatorDrawable {
         valueAnimator.setInterpolator(new AccelerateInterpolator());
         valueAnimator.setRepeatMode(ValueAnimator.REVERSE);
         valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        valueAnimator.setDuration(500);
+        valueAnimator.setDuration(indicatorSpeed);
         list.add(valueAnimator);
 
         return list;
@@ -76,7 +82,7 @@ public class BasketBallIndicator extends IndicatorDrawable {
     }
 
     private void drawBall(Canvas canvas, Paint paint) {
-        paint.setColor(Color.WHITE);
+        paint.setColor(indicatorColor);
 
         float x = getWidth() / 2;
         float move_y = getHeight() * mAnimatedValue;
@@ -103,13 +109,13 @@ public class BasketBallIndicator extends IndicatorDrawable {
 
         float radius = getWidth() / 10;
 
-        float cut = radius * ratio * 0.7f;
+        float cut = radius * ratio * 0.6f;
 
         paint.setColor(Color.GRAY);
         RectF rectF = new RectF(x - cut,
-                getHeight() / 2 + radius / 2,
+                getHeight() / 2 + radius * 0.5f,
                 x + cut,
-                getHeight() / 2 + radius);
+                getHeight() / 2 + radius * 0.7f);
         canvas.drawOval(rectF, paint);
     }
 

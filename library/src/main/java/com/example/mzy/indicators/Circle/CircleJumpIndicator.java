@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
 import android.view.animation.LinearInterpolator;
@@ -17,9 +16,9 @@ import java.util.ArrayList;
  * Created by mazhengyang on 18-10-24.
  */
 
-public class JumpIndicator extends IndicatorDrawable {
+public class CircleJumpIndicator extends IndicatorDrawable {
 
-    private final String TAG = JumpIndicator.class.getSimpleName();
+    private final String TAG = CircleJumpIndicator.class.getSimpleName();
 
     private final int mCount = 3;
     private float space;//相邻两圆间距
@@ -30,8 +29,14 @@ public class JumpIndicator extends IndicatorDrawable {
             0.0f, 0.0f, 0.0f
     };
 
-    public JumpIndicator(Context context) {
-        Log.d(TAG, "JumpIndicator: ");
+    public CircleJumpIndicator(Context context, int indicatorColor, int indicatorSpeed) {
+        Log.d(TAG, "CircleJumpIndicator: ");
+        this.indicatorColor = indicatorColor;
+        this.indicatorSpeed = indicatorSpeed;
+        if (indicatorSpeed <= 0) {
+            this.indicatorSpeed = 2000;
+        }
+
         init(context);
     }
 
@@ -41,7 +46,7 @@ public class JumpIndicator extends IndicatorDrawable {
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setStrokeWidth(dip2px(context, 1.0f));
-        mPaint.setColor(Color.WHITE);
+        mPaint.setColor(indicatorColor);
 
         space = dip2px(context, 2.0f);
     }
@@ -68,7 +73,7 @@ public class JumpIndicator extends IndicatorDrawable {
 
             valueAnimator.setInterpolator(new LinearInterpolator());
             valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
-            valueAnimator.setDuration(2000);
+            valueAnimator.setDuration(indicatorSpeed);
             valueAnimator.setStartDelay(delay[i]);
             list.add(valueAnimator);
         }

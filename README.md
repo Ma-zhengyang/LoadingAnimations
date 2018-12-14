@@ -28,6 +28,14 @@ e.g.
         app:indicatorName="ParallelogramIndicator" />
 ```
 
+```attribute
+
+indicatorColor:  indicator color, default is white.
+indicatorSpeed:  animation duration, must be a number greater than zero.
+indicatorName:   indicator name, refer to the Indicators below.
+
+```
+
 ## Indicators
 
 As seen above in the **Demo**, the indicators are as follows:
@@ -39,7 +47,7 @@ As seen above in the **Demo**, the indicators are as follows:
  * `CircleWaveIndicator`
 
 **Row 2**
- * `JumpIndicator`
+ * `CircleJumpIndicator`
  * `CircleCollisionIndicator`
  * `DropIndicator`
  * `TrackIndicator`
@@ -54,4 +62,5 @@ As seen above in the **Demo**, the indicators are as follows:
  * `RectJumpMoveIndicator`
  * `ArcRotateIndicator`
  * `ArcRotateScaleIndicator`
+ * `CircleRotateIndicator`
 
