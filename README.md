@@ -11,7 +11,7 @@
 Add dependencies in build.gradle.
 
 ```gradle
-    compile 'com.example.mzy.indicators:LoadingAnimations:1.0.2'
+    compile 'com.example.mzy.indicators:LoadingAnimations:1.0.3'
 ```
 
 
@@ -32,7 +32,7 @@ e.g.
 
 indicatorColor:  indicator color, default is white.
 indicatorSpeed:  animation duration, must be a number greater than zero.
-indicatorName:   indicator name, refer to the Indicators below.
+indicatorName:   indicator name, refer to the **Indicators** below.
 
 ```
 
@@ -54,13 +54,16 @@ As seen above in the **Demo**, the indicators are as follows:
 
 **Row 3**
  * `CircleRotateScaleIndicator`
+ * `CircleTriangleIndicator`
  * `ChartRectIndicator1`
  * `ChartRectIndicator2`
- * `ParallelogramIndicator`
 
 **Row4**
+ * `ParallelogramIndicator`
  * `RectJumpMoveIndicator`
  * `ArcRotateIndicator`
  * `ArcRotateScaleIndicator`
- * `CircleRotateIndicator`
+
+ **Row5**
+  * `CircleRotateIndicator`
 

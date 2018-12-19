@@ -19,6 +19,7 @@ import com.example.mzy.indicators.Circle.CircleJumpIndicator;
 import com.example.mzy.indicators.Circle.CircleRotateIndicator;
 import com.example.mzy.indicators.Circle.CircleRotateScaleIndicator;
 import com.example.mzy.indicators.Circle.CircleScaleIndicator;
+import com.example.mzy.indicators.Circle.CircleTriangleIndicator;
 import com.example.mzy.indicators.Circle.CircleWaveIndicator;
 import com.example.mzy.indicators.Circle.DropIndicator;
 import com.example.mzy.indicators.Circle.TrackIndicator;
@@ -112,6 +113,8 @@ public class LoadingIndicator extends View {
             return new TrackIndicator(context, indicatorColor, indicatorSpeed);
         } else if ("CircleRotateScaleIndicator".equals(indicatorName)) {
             return new CircleRotateScaleIndicator(context, indicatorColor, indicatorSpeed);
+        } else if ("CircleTriangleIndicator".equals(indicatorName)) {
+            return new CircleTriangleIndicator(context, indicatorColor, indicatorSpeed);
         } else if ("ChartRectIndicator1".equals(indicatorName)) {
             return new ChartRectIndicator1(context, indicatorColor, indicatorSpeed);
         } else if ("ChartRectIndicator2".equals(indicatorName)) {
